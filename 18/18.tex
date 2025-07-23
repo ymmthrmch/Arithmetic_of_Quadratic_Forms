@@ -28,30 +28,30 @@
 \setcounter{section}{17}
 \section{単純・半単純代数}
 \begin{set}
-\begin{itemize}
-\item $F$：体．
-\item $A$：$F$代数．
-\item $V,W$：（特に断りがなければ左）$A$加群．
-\end{itemize}
+	\begin{itemize}
+		\item $F$：体．
+		\item $A$：$F$代数．
+		\item $V,W$：（特に断りがなければ左）$A$加群．
+	\end{itemize}
 \end{set}
-有限次元ベクトル空間，すなわち体上の加群は
+有限次元ベクトル空間，すなわち有限生成な体上の加群は
 \begin{itemize}
-\item 有限個の1次元ベクトル空間の直和で表される．
+	\item 1次元ベクトル空間という"素材"の和で表すことができる．
+	\item 必要な"素材"は1次元ベクトル空間の1種類のみ．
 \end{itemize}
-などのいい性質を多く持つ．加群もこのような性質を持っていれば嬉しいが，もちろん一般には成り立たない．そこで加群がベクトル空間のような性質を持つという意味で体と類似している（係数）環のクラスとその性質を調べよう．それを定式化することができれば多少簡単に加群を扱うことができるだろう．まず係数環への適当な条件として，以下に定める$F$代数であることを課す．これにより加群をベクトル空間とみなすことができ，使える道具が増える．簡単に言えば$F$代数とはtai$F$を含む環のことである．
+などのいい性質を多く持つ．加群もこのような性質を持っていれば嬉しいが，もちろん一般には成り立たない．そこでその環上の加群がベクトル空間のような性質を持つという意味で体と類似している環のクラスをうまく定め，その性質を調べよう．それを定式化することができれば多少簡単に加群を扱うことができるだろう．まず環への適当な条件として，以下に定める$F$代数であることを課す．これにより加群をベクトル空間とみなすことができ，使える道具が増える．簡単に言えば$F$代数とは体$F$を中心に含む環のことである．
 \begin{dfn}[$F$代数]
 	\begin{enu}
 		\item $\bbZ$加群$(A,+)$と演算$\cdot$，写像$\gvph:F\to \End A$の組であって以下を満たすものを$F$代数という．
-			\begin{enu}
-				\item $(A,+,\gvph)$は$F$ベクトル空間．
-				\item $(A,+,\cdot)$は（単位的）環．
-				\item $\forall \ga,\gb\in F,\forall x,y\in A, (\ga x)(\gb y)=(\ga\gb)(xy)$．
-			\end{enu}
+		\begin{enu}
+			\item $(A,+,\gvph)$は$F$ベクトル空間．
+			\item $(A,+,\cdot)$は（単位的）環．
+			\item $\forall \ga,\gb\in F,\forall x,y\in A, (\ga x)(\gb y)=(\ga\gb)(xy)$．
+		\end{enu}
 		\item 唯一の単射$F\into A$により$F\subseteq A$とみなす．
 		\item $A$の元が全て可逆であるとき，$A$を可除代数という．
 	\end{enu}
 \end{dfn}
-\textbf{以降$F$代数$A$について$\dim_F A<\infty$と仮定する．}
 $F$代数$A$上の加群$W$の構造を調べていく．道具として以下を用意する．
 \begin{dfn}[自己準同型代数]
 	$W$を右$A$加群とする．
@@ -64,121 +64,139 @@ $F$代数$A$上の加群$W$の構造を調べていく．道具として以下�
 	これらにより$\End_A(W)$は$F$代数であり，$W$に左から作用する．\\
 	$W$が左$A$加群の場合，
 	\[
-	 (\gvph\gps)(x):=\gps(\gvph(x)),\quad (\ga\gvph)(x):=\ga\gvph(x)
+		(\gvph\gps)(x):=\gps(\gvph(x)),\quad (\ga\gvph)(x):=\ga\gvph(x)
 	\]
 	と定め，$W$に右から作用する．
 \end{dfn}
 \begin{rmk}
 	\begin{enu}
-		\item $W$の有限性は$\End_A(W)$に遺伝する．
-		\[
-		W\text{が有限生成}A\text{加群}\iff\dim_F W<\infty \iff \dim_F \End_F(W)<\infty\implies \dim_F \End_A(W)<\infty.
-		\]
+		\item $W$と$A$の有限性は$\End_A(W)$に遺伝する．
+		\begin{align*}
+			W\text{が有限生成}A\text{加群かつ}\dim_F A<\infty & \iff\dim_F W<\infty               \\
+			                                         & \iff \dim_F \End_F(W)<\infty      \\
+			                                         & \implies \dim_F \End_A(W)<\infty.
+		\end{align*}
 		\item $A$を右$A$加群とみなしたとき，$\End_A(A)$は左スカラー倍全体であり，$A$と$F$同型である．具体的には
 		\begin{align*}
-			\End_A(A)\ni f\longmapsto f(1)\in A,\quad \End_A(A)\ni (x\mapsto ax)\longmapsfrom a \in A
+			\End_A(A)\ni f\longmapsto f(1)\in A \\
+			\End_A(A)\ni (x\mapsto ax)\longmapsfrom a \in A
 		\end{align*}
 		が$F$同型を与える．
 		\item
 		$Y=\{x\in A\mid Vx=0\}$とおくと$Y$は$A$の両側イデアル．$A/Y$は作用が同じ元を同一視したもので，$V\rightaction A/Y$である．$A/Y$は$C$の部分代数であり，$B=D$である．
 		\begin{align*}
-			V&\rightaction A&&\text{：$A$の作用}\\
-			B=\End_A(V)\leftaction V&&&\text{：$A$と可換な自己準同型全て}\\
-			V&\rightaction\End_B(V)=C&&\text{：$A$と可換な自己準同型全て}\\
-			D=\End_C(V)\leftaction V&&&\text{：$A$と可換な自己準同型全て}\\
+			V                        & \rightaction A          &  & \text{：$A$の作用}         \\
+			B=\End_A(V)\leftaction V &                         &  & \text{：$A$と可換な自己準同型全て} \\
+			V                        & \rightaction\End_B(V)=C &  & \text{：$A$と可換な自己準同型全て} \\
+			D=\End_C(V)\leftaction V &                         &  & \text{：$A$と可換な自己準同型全て}
 		\end{align*}
 	\end{enu}
 \end{rmk}
-まず1次元ベクトル空間の性質を一つ抽出する．
+まず1次元ベクトル空間の性質を抽出し"素材"に当たるものを定める．
 \begin{dfn}[既約加群]
 	$A$加群$V$が以下を満たすとき既約であるという．
 	\begin{itemize}
-	\item$V\neq 0$．
-	\item 非自明な部分加群を持たない．
+		\item$V\neq 0$．
+		\item 非自明な部分加群を持たない．
 	\end{itemize}
 \end{dfn}
 \begin{prop}[既約加群の性質]
 	既約な$A$加群$V,W,W_i$に対して以下が成り立つ．
 	\begin{enu}
-		\item （既約ならば有限次元）$\dim_F V<\infty$．
+		\item （既約ならば有限生成）$V$は$A$上有限生成．
 		\item\label{prop:0_or_iso} （Schurの補題）$\forall \gvph\in \hom_A(V,W), \gvph = 0$または同型．
-		\item $\End_A(V)$は可除代数．
+		\item （自己準同型環は可除環）$\End_A(V)$は可除代数．
 	\end{enu}
 \end{prop}
 \begin{proof}
 	\begin{enu}
-		\item $x\in V$について$xA\leq A$ゆえ$x\neq 0$なら$xA=V$．よって$V$は有限生成ゆえ有限次元．
+		\item $x\in V$について$xA\leq A$ゆえ$x\neq 0$なら$xA=V$．
 		\item $\ker \gvph\leq V,\im\gvph\leq W$である．$\ker \gvph = 0$かつ$\im \gvph = W$，または$\ker \gvph = V$かつ$\im \gvph = 0$であり，前者なら$\gvph$は同型，後者ならば$\gvph = 0$．
 		\item (\ref{prop:0_or_iso})よりしたがう．
-		\end{enu}
+	\end{enu}
 \end{proof}
-続いて1次元ベクトル空間を既約加群に抽象化したときに，有限次元ベクトル空間に相当するものを定める．
+続いて"素材"である既約加群の和で表せる空間を定義する．
 \begin{dfn}[完全可約]
-$A$加群$V$が既約$A$加群の有限和になるとき完全可約であるという．
+	$A$加群$V$が既約$A$加群の（有限とは限らない）和になるとき完全可約であるという．
 \end{dfn}
 \begin{rmk}
-0は0個の既約加群の和であるので完全可約である．
+	0は0個の既約加群の和であるので完全可約である．
 \end{rmk}
-完全可約性は既約加群のみの有限和でかけるという意味で，有限生成よりも強い有限性と言える．
-\begin{prop}
-\begin{enu}
-	\item 完全可約加群$V$は有限生成である．
-	\item 以下は同値である．
+\begin{prop}[完全可約加群の性質]\label{prop:complete_summand}
 	\begin{enu}
-		\item $V$は完全可約である．
-		\item $V$では完全可約な補空間を取れる．つまり\[
-		\forall U\leq V,\exists W\leq V, W\text{：完全可約かつ}V=U\oplus W.
-		\]
-		\item  $V$は直和で完全可約である．つまり
-		\[
-		\exists W_1,\ldots,W_m\text{：既約加群}, V=\bigoplus_{i=1}^mW_i.
-		\]
+		\item 以下は同値である．
+		\begin{enu}
+			\item $V$は完全可約である．つまり既約な部分加群の族$\{V_i\}_{i\in I}$があり
+			\begin{equation}
+				V=\sum_{i\in I}V_i\label{eq:complete_summand}
+			\end{equation}
+			となる．
+			\item $V$では完全可約な補空間を取れる．つまり\[
+				\forall U\leq V,\exists W\leq V, W\text{は完全可約かつ}V=U\oplus W.
+			\]
+			より詳しく(\ref{eq:complete_summand})のとき，$W=\sum_{i\in J}V_i\,(J\subseteq I)$とかける．
+			\item  $V$は直和で完全可約である．つまり
+			\[
+				\exists \{W_i\}_{i\in J}, W_i\text{は既約かつ}V=\bigoplus_{i\in J}W_i.
+			\]
+			より詳しく(\ref{eq:complete_summand})のとき，$\{W_i\}_{i\in J}\subseteq \{V_i\}_{i\in I}$とできる．
+		\end{enu}
+		\item 完全可約性は和，部分，商に遺伝する．つまり完全可約加群$V,V_i$と$U\leq V$について，$\sum_{i\in I}V_i,U,V/U$は完全可約．
 	\end{enu}
-	\item 完全可約性は有限和，部分，商に遺伝する．つまり完全可約加群$V,W$と$U\leq V$について，$V+W,U,V/U$は完全可約．
-\end{enu}
 \end{prop}
 \begin{proof}
-\begin{enu}
-\item 既約加群は有限次元ゆえ，その有限和である$V$も有限次元．
-\item \underline{(i)$\implies$(ii)}  既約加群$W_1,\ldots,W_n$を用いて$V=\sum_{i = 1}^nW_i$と表せる．$J=\{i\mid i=1,\ldots,n, W_i\cap U = 0 \}$とおく．$U\cap \sum_{j\in J} W_j = 0$である．$X:= U\oplus  \sum_{j\in J} W_j$とおく．$X\neq V$と仮定すると，$W_k\not\subseteq X$なる$k\not\in J$が存在する．$0\leq W_k\cap X< W_k$ゆえ$W_k\cap U\subseteq W_k\cap X =0$となるが$k\not\in J$に矛盾．よって$X=V$．\\
+	\begin{enu}
+		\item
+		\underline{(i)$\implies$(ii)} 既約な部分加群の族$\{V_i\}_{i\in I}$を用いて$V=\sum_{i \in I}V_i$と表せる．
+		\[
+			S=\left\{J\subseteq I\,\bigg|\, U\cap\sum_{i\in J}V_i=0\right\}
+		\]
+		にZornの補題を用いることで$S$の極大元$J$を得る．$X:= U\oplus  \sum_{j\in J} V_j$とおく．$X\neq V$と仮定すると，$V_k\not\subseteq X$なる$k\in I\setminus J$が存在する．すると$J\subsetneq J\cup\{k\}\in S$となる．なぜなら$0\leq V_k\cap X< V_k$と$V_k$が既約であることから$V_k\cap X=0$であり，
+		\[
+			v+w\in\left(V_k+\sum_{i\in J}V_i\right)\cap U\quad \left(v\in V_k, w\in \sum_{i\in J}V_i\right)
+		\]
+		ならば$v\in X\cap V_k$ゆえ$v=w=0$であり，したがって$(V_k+\sum_{i\in J}V_i)\cap U=0$であるから．しかしこれは$J$の極大性に矛盾．よって$X=V$．\\
 		\underline{(ii)$\implies$(i)}\,$U=0$とすれば良い．\\
-		\underline{(i)かつ(ii)$\implies$(iii)}\,(i)より既約加群$W_1,\ldots,W_n$を用いて$V=\sum_{i \in I_1}W_i(I_1=\{1,\ldots,n\})$と表せる．(ii)より$V=W_1\oplus \sum_{i\in I_2}W_i$なる$I_2\subsetneq I_1$を取れる．$\sum_{i\in I_2}W_i$について同様に$\sum_{i\in I_2}W_i=W_{k_2}\oplus \sum_{i\in I_3}W_i(k_2=\min I_2)$なる$I_3\subsetneq I_2$を取れる．これを繰り返すとある$l<\infty$で$I_l=\{\}$となる．$k_i = \min I_i$として$V=\bigoplus_{i=1}^{l-1}W_{k_i}$となる．
-\item 和については明らか．(1)より$V= U\oplus U'$なる完全可約部分群$U'$が存在する．$V/U\cong U'$ゆえ$V/U$は完全可約．$U'$の完全可約な補空間を$U''$とおくと，$U\cong V/U'\cong U''$より$U$は完全可約．
-\end{enu}
+		\underline{(i)かつ(ii)$\implies$(iii)}\,(i)より既約な部分加群$\{V_i\}_{i\in I}$を用いて$V=\sum_{i \in I}V_i$と表せる．
+		\[
+			T=\left\{J\subseteq I \,\bigg|\,\sum_{i\in J}V_i=\bigoplus_{i\in J}V_i\right\}
+		\]
+		にZornの補題を用いることで$T$の極大元$J$を得る．$X:=\bigoplus_{j\in J}V_j$とおく．(ii)より$V=X\oplus \sum_{i\in K}V_i$となる$K\subsetneq I\setminus J$を取れる．$K\neq \varnothing$ならば$k\in K\setminus J$について$J\cup\{k\}\in T$となるがこれは$J$の極大性に矛盾．よって$K=\varnothing$であり$V=X$．
+		\item
+		和については明らか．(1)より$V= U\oplus U'$なる完全可約部分群$U'$が存在する．$V/U\cong U'$ゆえ$V/U$は完全可約．$U'$の完全可約な補空間を$U''$とおくと，$U\cong V/U'\cong U''$より$U$は完全可約．
+	\end{enu}
 \end{proof}
-加群が完全可約になるという意味で体に類似している代数のクラスを定めよう．
+(1)の(ii)が完全可約の定義に採用されることもある．体の場合には，任意のベクトル空間が完全可約となった．そこでその環上の任意の加群が完全可約になるという意味で体に類似している代数のクラスを定めよう．
 \begin{dfn}[半単純代数]
 	任意の右（resp. 左）$A$加群が完全可約であるとき，$F$代数$A$を右（resp. 左）半単純であるという．
 \end{dfn}
-半単純代数の性質を見ていこう．
-\begin{prop}
-	\begin{enu}
-	\item $F$代数$A$について
+体の類似物を定めることができたのでその性質を見ていこう．
+\begin{prop}[半単純代数の特徴付け]
+	$F$代数$A$について
 	\[
 		A\text{が右半単純}\iff A\text{が右}A\text{加群として完全可約}
 	\]
 	である．
-	\end{enu}
 \end{prop}
-\begin{enu}
-	\item \underline{$\implies$}定義よりしたがう．\underline{$\impliedby$}\color{red}{後で書く}
-\end{enu}
-半単純代数のイデアルと既約加群には関係がある．それを見る前に言葉を一つ用意する．
+\begin{proof}
+	\underline{$\implies$} 定義よりしたがう．
+	\underline{$\impliedby$} 任意に右$A$加群$V$をとる．
+	\[
+		\gvph:\bigoplus_{V}A\ni(a_v)_{v\in V}\mapsto \sum_{v\in V} a_vv\in V
+	\]
+	とおくと，$V\cong \bigoplus_{V}A/\ker \gvph$である．命題(\ref{prop:complete_summand})よりしたがう．
+\end{proof}
+半単純代数のイデアルと既約加群の構造には関係がある．それを見ていこう．
 \begin{dfn}[極小イデアル]
 	$F$代数$A$の右イデアルが右$A$加群として既約であるとき，極小右イデアルという．
 \end{dfn}
 \begin{prop}[半単純代数の既約加群と極小イデアル]
-	$A$が右半単純であるとする．$A$は完全可約ゆえ極小右イデアル$W_1,\ldots,W_n$を用いて$A=\bigoplus_{i=1}^n W_i$と書ける．このとき$A$の既約右$A$加群は$W_i$のいずれかと同型である．
+	$A$が右半単純であるとする．$A$は完全可約ゆえ極小右イデアルの族$\{V_i\}_{i\in I}$を用いて$A=\bigoplus_{i\in I} V_i$と書ける．このとき$A$の既約右$A$加群は$V_i$のいずれかと同型である．
 \end{prop}
 \begin{proof}
-既約右$A$加群$V$を任意にとる．$v\in V\setminus\{0\}$をとる．$vA=V$ゆえ$\gvph:A\ni x\mapsto vx\in V$は全射準同型．$J\subseteq \{1,\ldots,n\}$があり，$A\cong \ker \gvph \oplus \bigoplus_{j\in J} W_j$となる．$\gvph$の全射性より$V\cong A/\ker\gvph \cong  \bigoplus_{j\in J} W_j$だが，$\#J \neq 1$なら$V$が既約であることに矛盾する．よって$J=\{j\}$なる$j$について$V\cong W_j$．
+	既約右$A$加群$V$を任意にとる．$v\in V\setminus\{0\}$をとる．$vA=V$ゆえ$\gvph:A\ni x\mapsto vx\in V$は全射準同型．$J\subseteq I$があり，$A\cong \ker \gvph \oplus \bigoplus_{j\in J} W_j$となる．$\gvph$の全射性より$V\cong A/\ker\gvph \cong  \bigoplus_{j\in J} W_j$だが，$\#J \neq 1$なら$V$が既約であることに矛盾する．よって一意的に$j\in J$が存在し$V\cong W_j$．
 \end{proof}
-\[
-\begin{pmatrix}
-a&b\\
-\frac{1}{c}&\frac{1}{c}
-\end{pmatrix}
-\]
+% lemma18.9->thm18.11->simpleの定義->thm18.12
 %%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
 %\input{thebibliography.tex}
 \end{document}
