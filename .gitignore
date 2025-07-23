@@ -1,0 +1,15 @@
+# LaTeXの中間ファイル
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.dvi
+*.lof
+*.lot
