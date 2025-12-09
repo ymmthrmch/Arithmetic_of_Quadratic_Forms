@@ -3,11 +3,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
 \input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/environments.tex}
 \input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/packages.tex}
-\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/theorem.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/theorem_with_section_numbers.tex}
 \input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/operators_and_letters.tex}
 \input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/layout_for_harumichi.tex}
 \input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/spare.tex}
 %%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
+
+\usetikzlibrary{arrows.meta}
 
 %%%%%%%%%%%%%style of numbers in emumerate environment%%%%%%%%%%%%
 \renewcommand{\labelenumi}{(\arabic{enumi})} %大番号の付け方
@@ -17,13 +19,6 @@
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%title%%%%%%%%%%%%%%%%%%%%%%%%
-\title{}
-\author{山本晴道}
-\date{最終更新：\today}
-\maketitle
-%%%%%%%%%%%%%%%%%%%%%%%%title%%%%%%%%%%%%%%%%%%%%%%%%
-
 %%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
 \setcounter{section}{17}
 \section{単純・半単純代数}
@@ -31,62 +26,64 @@
 	\begin{itemize}
 		\item $F$：体．
 		\item $A$：$F$代数．
-		\item $V,W$：（特に断りがなければ左）$A$加群．
+		\item $M,N$：（特に断りがなければ左）$A$加群．
 	\end{itemize}
 \end{set}
-有限次元ベクトル空間，すなわち有限生成な体上の加群は
+ベクトル空間，すなわち体上の加群は，
 \begin{itemize}
-	\item 1次元ベクトル空間という"素材"の和で表すことができる．
-	\item 必要な"素材"は1次元ベクトル空間の1種類のみ．
+	\item \textbf{性質(甲)}：1次元ベクトル空間という"素材"の和で表すことができる．
+	\item \textbf{性質(乙)}：必要な"素材"は1次元ベクトル空間の1種類のみ．
 \end{itemize}
-などのいい性質を多く持つ．加群もこのような性質を持っていれば嬉しいが，もちろん一般には成り立たない．そこでその環上の加群がベクトル空間のような性質を持つという意味で体と類似している環のクラスをうまく定め，その性質を調べよう．それを定式化することができれば多少簡単に加群を扱うことができるだろう．まず環への適当な条件として，以下に定める$F$代数であることを課す．これにより加群をベクトル空間とみなすことができ，使える道具が増える．簡単に言えば$F$代数とは体$F$を中心に含む環のことである．
+などのいい性質を多く持つ．加群もこのような性質を持っていれば嬉しいが，もちろん一般には成り立たない．そこでその環上の加群がベクトル空間のような性質(甲)，(乙)を持つという意味で体と類似している環のクラスをうまく定め，その性質を調べよう．まず環への適当な条件として，以下に定める有限次元$F$代数であることを課す\footnote{有限次元の条件はなるべく課さずに進め，課す場合には明記する．また有限次元という条件はアルティンであるという条件に緩めることができる．}．これにより加群をベクトル空間とみなすことができ，使える道具が増える．簡単に言えば$F$代数とは体$F$を中心に含む環のことである．
 \begin{dfn}[$F$代数]
 	\begin{enu}
 		\item $\bbZ$加群$(A,+)$と演算$\cdot$，写像$\gvph:F\to \End A$の組であって以下を満たすものを$F$代数という．
 		\begin{enu}
 			\item $(A,+,\gvph)$は$F$ベクトル空間．
 			\item $(A,+,\cdot)$は（単位的）環．
-			\item $\forall \ga,\gb\in F,\forall x,y\in A, (\ga x)(\gb y)=(\ga\gb)(xy)$．
+			\item $\forall \ga,\gb\in F,\forall a,b\in A, (\ga a)(\gb b)=(\ga\gb)(ab)$．
 		\end{enu}
+		ただし，$\gvph(\ga)(x)$を$\ga x$と書く．
 		\item 唯一の単射$F\into A$により$F\subseteq A$とみなす．
 		\item $A$の元が全て可逆であるとき，$A$を可除代数という．
+		\item $F$代数$A$が$F$ベクトル空間として有限次元であるとき，有限次元$F$代数という．
 	\end{enu}
 \end{dfn}
 \begin{rmk}
-	最初にいくつか注意をしておく．基本的に右作用や右加群に対して成り立つことは適切に書き換えることで左作用や左加群に対しても成り立つ．また$a$を$v$に右作用させるとき$va$と書くが明示したいときは$v\cdot a$と書く．
+	最初にいくつか注意をしておく．まず本稿で述べることは基本的に左右対称である．つまり右作用や右加群に対して成り立つことは適切に書き換えることで左作用や左加群に対しても成り立つ．また$a$を$m$に右作用させるとき$ma$と書くが明示したいときは$m\cdot a$と書く．
 \end{rmk}
-$F$代数$A$上の加群$W$の構造を調べていく．まずそのための道具として自己準同型代数を用意する．
+有限次元$F$代数$A$上の加群$M$の構造を調べていく．まずそのための道具として自己準同型代数を用意する．
 \begin{dfn}[自己準同型代数]
-	$W$を右$A$加群とする．
+	$M$を右$A$加群とする．
 	\begin{itemize}
-		\item $\End_A(W):=\{\gvph:W\to W\mid A\text{線型}\}$．
-		\item $(\gvph +\gps)(x):=\gvph(x)+\gps(x)$．
-		\item $(\gvph\gps)(x):=\gps(\gvph(x))$．
-		\item $(\ga\gvph)(x):=\ga\gvph(x)$．
+		\item $\End_A(M):=\{\gvph:M\to M\mid A\text{線型}\}$．
+		\item $(\gvph +\gps)(m):=\gvph(m)+\gps(m)$．
+		\item $(\gvph\gps)(m):=\gps(\gvph(m))$．
+		\item $(\ga\gvph)(m):=\ga\gvph(m)$．
 	\end{itemize}
-	これらにより$\End_A(W)$は$F$代数であり，$W$に左から作用する．\\
-	$W$が左$A$加群の場合，
+	これらにより$\End_A(M)$は$F$代数であり，$M$に左から作用する．\\
+	$M$が左$A$加群の場合，
 	\[
-		(\gvph\gps)(x):=\gps(\gvph(x)),\quad (\ga\gvph)(x):=\ga\gvph(x)
+		(\gvph\gps)(m):=\gps(\gvph(m)),\quad (\ga\gvph)(m):=\ga\gvph(m)
 	\]
-	と定め，$W$に右から作用する．
+	と定め，$M$に右から作用する．
 \end{dfn}
 \begin{rmk}\label{rmk:end}
 	\begin{enu}
-		\item $W$と$A$の有限性は$\End_A(W)$に遺伝する．
+		\item \label{item:end_is_fin}$A$が有限次元であるとき，$M$の有限生成性は$\End_A(M)$に遺伝する．
 		\begin{align*}
-			W\text{が有限生成}A\text{加群かつ}\dim_F A<\infty & \iff\dim_F W<\infty               \\
-			                                         & \iff \dim_F \End_F(W)<\infty      \\
-			                                         & \implies \dim_F \End_A(W)<\infty.
+			M\text{が有限生成}A\text{加群} & \iff\dim_F M<\infty               \\
+			                        & \iff \dim_F \End_F(M)<\infty      \\
+			                        & \implies \dim_F \End_A(M)<\infty.
 		\end{align*}
-		\item $A$を右$A$加群とみなしたとき，$\End_A(A)$は左スカラー倍全体であり，$A$と$F$同型である．具体的には
+		\item \label{item:end_of_it_is_itself}$A$を右$A$加群とみなしたとき，$\End_A(A)$は左スカラー倍全体であり，$A$と$F$同型である．具体的には
 		\begin{align*}
 			\End_A(A)\ni f\longmapsto f(1)\in A \\
 			\End_A(A)\ni (x\mapsto ax)\longmapsfrom a \in A
 		\end{align*}
 		が$F$同型を与える．
 		\item\label{item:end_of_end}
-		$Y=\{x\in A\mid Vx=0\}$とおくと$Y$は$A$の両側イデアル．$A/Y$は作用が同じ元を同一視したもので，$V\rightaction A/Y$である．$A/Y$は$C$の部分代数であり，$B=D$である．
+		$I=\{a\in A\mid Ma=0\}$とおくと$I$は$A$の両側イデアル．$A/I$は作用が同じ元を同一視したもので，$M\rightaction A/I$である．以下の図で$A/I$は$C$の部分代数であり，$B=D$である．
 		\begin{align*}
 			V                        & \rightaction A          &  & \text{：$A$の作用}         \\
 			B=\End_A(V)\leftaction V &                         &  & \text{：$A$と可換な自己準同型全て} \\
@@ -95,253 +92,409 @@ $F$代数$A$上の加群$W$の構造を調べていく．まずそのための�
 		\end{align*}
 	\end{enu}
 \end{rmk}
-\begin{prop}[有限直和の自己準同型代数]\label{prop:ds_and_end}
-	$V$を左$A$加群，$W=\tp V^r$（$V$成分の$r$次行ベクトル全体）とする．このとき$F$代数として
+\begin{prop}[有限直和の自己準同型代数は行列代数]\label{prop:ds_and_end}
+	$M$を左$A$加群，$N=M^r$（$M$成分の$r$次行ベクトル全体）とする．このとき$F$代数として
 	\[
-		\End_A(W)\cong \m_r(\End_A(V)).
+		\End_A(N)\cong \m_r(\End_A(M)).
 	\]
-	また証明で構成する同型によって誘導される右作用$W\rightaction\End_A(W)$は，通常の積$a\cdot w=aw$である．ただし$a_{ij}\in\End_A(V),v_j\in V$の積は$v_j\cdot a_{ij}$とする．
+	また証明で構成する同型によって誘導される右作用$N\rightaction\m_r(\End_A(M))$は，通常の行ベクトルと行列の積$n\cdot A=nA$である．ただし$n_j\in M, A_{ij}\in\End_A(M)$の積は右作用$n_j\cdot A_{ij}$とする．
 \end{prop}
 \begin{proof}
-	$i=1,\ldots,r$に対して$\gi_i:V\to W$を第$i$成分への埋め込み，$\gp_i:W\to V$を第$i$成分への射影とする．
+	$i=1,\ldots,r$に対して$\gi_i:M\to N$を第$i$成分への埋め込み，$\gp_i:N\to M$を第$i$成分への射影とする．
 	\[
-		\gvph:\End_A(W)\ni \ga\to(\gp_j\circ\ga\circ\gi_i)_{i,j}\in\m_r(\End_A(V))
+		\gvph:\End_A(N)\ni \ga\to(\gp_j\circ\ga\circ\gi_i)_{i,j}\in\m_r(\End_A(M))
 	\]
-	と定める．これが同型を与えることを見る．まず$\gp_j\circ\ga\circ\gi_i\in\End_A(V)$であるので$\gvph$はwell-definedである．$\gvph$が和とスカラー倍を保存することもわかる．積についても
+	と定める．これが同型を与えることを見る．まず$\gp_j\circ\ga\circ\gi_i\in\End_A(M)$であるので$\gvph$はwell-definedである．$\gvph$が和とスカラー倍を保存することもわかる．積についても
 	\begin{align*}
-		\gvph(\ga)\gvph(\gb) = & (\gp_j\circ\ga\circ\gi_i)_{i,j}(\gp_l\circ\gb\circ\gi_k)_{k,l}                                  \\
-		=                      & \left(\sum_{j=1}^r(\gp_j\circ\ga\circ\gi_i)(\gp_l\circ\gb\circ\gi_j)\right)_{i,l}               \\
-		=                      & \left(\sum_{j=1}^r(\gp_l\circ\gb\circ\gi_j)\circ(\gp_j\circ\ga\circ\gi_i)\right)_{i,l}          \\
-		=                      & \left(\gp_l\circ\gb\circ\left(\sum_{j=1}^r\gi_j\circ\gp_j\right)\circ\ga\circ\gi_i\right)_{i,l} \\
-		=                      & \left(\gp_l\circ\gb\circ\ga\circ\gi_i\right)_{i,l}                                              \\
-		=                      & (\gp_l\circ\ga\gb\circ\gi_i)_{i,l}                                                              \\
-		=                      & \gvph(\ga\gb).
+		\gvph(f)\gvph(g) = & (\gp_j\circ f\circ\gi_i)_{i,j}(\gp_l\circ g\circ\gi_k)_{k,l}                                  \\
+		=                  & \left(\sum_{j=1}^r(\gp_j\circ f\circ\gi_i)(\gp_l\circ g\circ\gi_j)\right)_{i,l}               \\
+		=                  & \left(\sum_{j=1}^r(\gp_l\circ g\circ\gi_j)\circ(\gp_j\circ f\circ\gi_i)\right)_{i,l}          \\
+		=                  & \left(\gp_l\circ g\circ\left(\sum_{j=1}^r\gi_j\circ\gp_j\right)\circ f\circ\gi_i\right)_{i,l} \\
+		=                  & \left(\gp_l\circ g\circ f\circ\gi_i\right)_{i,l}                                              \\
+		=                  & (\gp_l\circ fg\circ\gi_i)_{i,l}                                                               \\
+		=                  & \gvph(fg).
 	\end{align*}
-	より保たれる．単射性は，$\ga,\gb\in\End_A(W)$について
+	より保たれる．単射性は，$f,g\in\End_A(N)$について
 	\begin{align*}
-		\gvph(\ga) = \gvph(\gb) & \implies \exists i,j\in\{1,\ldots,r\}, \gp_j\circ\ga\circ\gi_i \neq \gp_j\circ\gb\circ\gi_i \\
-		                        & \implies \exists i\in\{1,\ldots,r\},\exists v\in V, \ga(\gi_i(v)) \neq \gb(\gi_i(v))        \\
-		                        & \implies \ga\neq \gb.
+		\gvph(f) = \gvph(g) & \implies \exists i,j\in\{1,\ldots,r\}, \gp_j\circ f\circ\gi_i \neq \gp_j\circ g\circ\gi_i \\
+		                    & \implies \exists i\in\{1,\ldots,r\},\exists v\in V, f(\gi_i(v)) \neq g(\gi_i(v))          \\
+		                    & \implies f\neq g.
 	\end{align*}
-	よりしたがう．全射性は，任意の$(a_{ij})_{i,j}\in\m_r(\End_A(V))$について$\ga:W\to W$を
+	よりしたがう．全射性は，任意の$(f_{ij})_{i,j}\in\m_r(\End_A(M))$について$F:N\to N$を
 	\[
-		\ga:(v_1,\ldots,v_r)\mapsto \left(\sum_{j=1}^r v_j\cdot a_{j1},\ldots,\sum_{j=1}^r v_j\cdot a_{jr}\right)
+		\ga:(m_1,\ldots,m_r)\mapsto \left(\sum_{j=1}^r m_j f_{j1},\ldots,\sum_{j=1}^r m_j f_{jr}\right)
 	\]
-	と定めると$\ga\in\End_A(W)$であり，$\gvph(\ga)=(a_{ij})_{i,j}$となることよりしたがう．
+	と定めると$F\in\End_A(N)$であり，$\gvph(F)=(f_{ij})_{i,j}$となることよりしたがう．
 \end{proof}
-\begin{eg}[斜体の直和加群]\label{eg:ds_of_skew}
-	ここまでの内容を確認する例を見る．\textbf{この例はあとで重要となる}．$D$を可除$F$代数とする．$V=\tp D^r$，$A=\m_r(D)$とおく．
-	\begin{itemize}
-		\item 左からの積で左作用$D\leftaction V$を定め$V$を左$D$加群とする．
-		\item 右からの積で右作用$V\rightaction A$を定め$V$を右$A$加群とする．
-	\end{itemize}
-	$\End_D(V),\End_A(V)$を求めよう．$V$は（左からの積による）左$D$加群$D$の$r$個の直和ゆえ，命題\ref{prop:ds_and_end}より
+ここまでの内容を確認する例を見る．
+\begin{egbox}[可除代数の直和加群]\label{eg:div_ds}
+	$D$を可除$F$代数，$M=D^r,A=\m_r(D)$とする．標準的な積により$D\leftaction M\rightaction A$とする．このとき
 	\[
-		\End_D(V)\cong\m_r(\End_D(D))\cong\m_r(D).
-	\]
-	$\End_A(V)$について考える．$D\subseteq A$に制限すると命題\ref{prop:ds_and_end}より$\End_{D(\subseteq A)}(V)\cong\m_r(D)$である．$\End_{D(\subseteq A)}(V)\supseteq\End_A(V)$ゆえ，$\End_A(V)$は$\m_r(D)$のうち$A$の作用と可換なもの全体である．この条件を書き下していこう．$\End_{D(\subseteq A)}(V)=\m_r(D)$の左作用は命題\ref{prop:ds_and_end}を適切に左右逆に書き換えると，$a\in\m_r(D),v\in V$として$a\cdot v=v^{\op}a^{\op}$である．ただし$(-)^{\op}$は引数の各成分を反対環の元とみなす演算子である．$A$の右作用は$v\cdot a=va$であった．よって
+		\End_D(M)=A,\quad \End_A(M)=D
+	\]である．
+\end{egbox}
+注意\ref{rmk:end}のように書くと以下のようになる．
+\begin{align*}
+	D\leftaction M           &                         &  & \text{：$D$の左作用}        \\
+	M                        & \rightaction\End_D(M)=A &  & \text{：$D$と可換な自己準同型全て} \\
+	\End_A(M)=D\leftaction M &                         &  & \text{：$A$と可換な自己準同型全て}
+\end{align*}
+\begin{proof}
+	$\End_D(M),\End_A(M)$を求めよう．$M$は（左からの積による）左$D$加群$D$の$r$個の直和ゆえ，命題\ref{prop:ds_and_end}より
 	\[
-		(b\cdot v)\cdot a = b\cdot (v\cdot a) \iff (v^{\op}b^{\op})^{\op}a=(va)^{\op}b^{\op}.
+		\End_D(M)\cong\m_r(\End_D(D))\cong\m_r(D).
 	\]
-	$v$を$e_i=(0,\ldots,0,1,0,\ldots,0)\in V$とすると左辺は$ba$の第$i$行目，右辺は$a^{\op}b^{\op}$の第$i$行目である．したがって
+	$\End_A(M)$について考える．$D\subseteq A$に制限すると命題\ref{prop:ds_and_end}より$\End_{D(\subseteq A)}(M)\cong\m_r(D)$である．$\End_{D(\subseteq A)}(M)\supseteq\End_A(M)$ゆえ，$\End_A(M)$は$\m_r(D)$のうち$A$の作用と可換なもの全体である．この条件を書き下していこう．$\End_{D(\subseteq A)}(M)=\m_r(D)$の左作用は命題\ref{prop:ds_and_end}を適切に左右逆に書き換えると，$a\in\m_r(D),m\in M$として$a\cdot m=m^{\op}a^{\op}$である．ただし$(-)^{\op}$は引数の各成分を反対環の元とみなす演算子である．$A$の右作用は$m\cdot a=ma$であった．よって
 	\[
-		b\in \End_A(V)\implies \forall a\in A, ba=a^{\op}b^{\op}.
+		(b\cdot m)\cdot a = b\cdot (m\cdot a) \iff (m^{\op}b^{\op})^{\op}a=(ma)^{\op}b^{\op}.
 	\]
-	$b\in \m_r(D)\setminus D$ならばこれを満たさないことがわかる．また注意\ref{rmk:end}(\ref{item:end_of_end})より$D\subseteq \End_A(V)$である．よって$\End_A(V)=D$．上記の内容をまとめておく．
-	\begin{itembox}[l]{\textbf{例\ref{eg:ds_of_skew}．斜体の直和加群}}
-		$D$を可除$F$代数，$V=\tp D^r,A=\m_r(D)$とする．標準的な積により$D\leftaction V\rightaction A$とする．このとき$\End_D(V)=A,\End_A(V)=D$である．
-		\begin{align*}
-			D\leftaction V           &                         &  & \text{：$D$の左作用}        \\
-			V                        & \rightaction\End_D(V)=A &  & \text{：$D$と可換な自己準同型全て} \\
-			\End_A(V)=D\leftaction V &                         &  & \text{：$A$と可換な自己準同型全て}
-		\end{align*}
-	\end{itembox}
-\end{eg}
+	$m$を$e_i=(0,\ldots,0,1,0,\ldots,0)\in M$とすると左辺は$ba$の第$i$行目，右辺は$a^{\op}b^{\op}$の第$i$行目である．したがって
+	\[
+		b\in \End_A(M)\implies \forall a\in A, ba=a^{\op}b^{\op}.
+	\]
+	$b\in \m_r(D)\setminus D$ならばこれを満たさないことがわかる．また注意\ref{rmk:end}(\ref{item:end_of_end})より$D\subseteq \End_A(M)$である．よって$\End_A(M)=D$．
+\end{proof}
 自己準同型代数の準備が終わったので，ベクトル空間の性質の抽出に取り掛かろう．まず1次元ベクトル空間の性質を抽出し"素材"に当たるものを定める．
-\begin{dfn}[既約加群]
-	$A$加群$V$が以下を満たすとき既約であるという．
+\begin{dfn}[単純加群]
+	$A$加群$V$が以下を満たすとき単純であるという．
 	\begin{itemize}
 		\item$V\neq 0$．
 		\item 非自明な部分加群を持たない．
 	\end{itemize}
 \end{dfn}
 \begin{eg}
-	既約なベクトル空間は1次元ベクトル空間のみである．
+	ベクトル空間に対しては、単純であることと1次元であることは同値である．
 \end{eg}
-\begin{prop}[既約加群の性質]
-	既約な$A$加群$V,W,W_i$に対して以下が成り立つ．
+もう一つ重要な単純加群の例を見ておこう．
+\begin{egbox}[$D^r$は単純右$\m_r(D)$加群]\label{eg:d^r_is_irr}
+	$D$を可除$F$代数，$A=\m_r(D),M=D^r$とする．
+	$M$は単純な右$A$加群である．
+\end{egbox}
+\begin{proof}
+	任意に0でない部分加群$N\leq M$をとる．$n=(n_i)\in N\setminus\{0\}$をとる．$n_i\neq 0$なる$i$が取れる．任意の$m=(m_i)\in M$に対して
+	\[
+		n\cdot
+		\mqty(
+		0&\cdots&0\\
+		\vdots&&\vdots\\
+		{n_i}^{-1}&\cdots&{n_i}^{-1}\\
+		\vdots&&\vdots\\
+		0&\cdots&0
+		)
+		\mqty(
+		m_1&0&\cdots&0\\
+		0&m_2&\cdots&0\\
+		\vdots&&\ddots&\vdots\\
+		0&0&\cdots&m_r
+		)
+		=(1\, \cdots\, 1)\mqty(
+		m_1&0&\cdots&0\\
+		0&m_2&\cdots&0\\
+		\vdots&&\ddots&\vdots\\
+		0&0&\cdots&m_r
+		)
+		=m
+	\]
+	ゆえ$m\in N$．よって$N=M$であり，$M$は単純．
+\end{proof}
+単純加群の性質をいくつか見よう．
+\begin{prop}[単純加群の性質]\label{prop:irr_mod}
+	単純な$A$加群$M,N$に対して以下が成り立つ．
 	\begin{enu}
-		\item （既約ならば有限生成）$V$は$A$上有限生成．
-		\item\label{prop:0_or_iso} （Schurの補題）$\forall \gvph\in \hom_A(V,W), \gvph = 0$または同型．
-		\item （自己準同型環は可除環）$\End_A(V)$は可除代数．
+		\item （単純ならば有限生成）$M$は$A$上有限生成．
+		\item\label{prop:0_or_iso} （Schurの補題）$\forall \gvph\in \hom_A(M,N), \gvph = 0$または同型．
+		\item （自己準同型環は可除環）$\End_A(M)$は可除代数．
 	\end{enu}
 \end{prop}
 \begin{proof}
 	\begin{enu}
-		\item $x\in V$について$xA\leq A$ゆえ$x\neq 0$なら$xA=V$．
-		\item $\ker \gvph\leq V,\im\gvph\leq W$である．$\ker \gvph = 0$かつ$\im \gvph = W$，または$\ker \gvph = V$かつ$\im \gvph = 0$であり，前者なら$\gvph$は同型，後者ならば$\gvph = 0$．
+		\item $x\in M$について$xA\leq A$ゆえ$x\neq 0$なら$xA=M$．
+		\item $\ker \gvph\leq M,\im\gvph\leq N$である．$\ker \gvph = 0$かつ$\im \gvph = N$，または$\ker \gvph = M$かつ$\im \gvph = 0$であり，前者なら$\gvph$は同型，後者ならば$\gvph = 0$．
 		\item (\ref{prop:0_or_iso})よりしたがう．
 	\end{enu}
 \end{proof}
 \begin{eg}
-	$A$が体$K$のとき，既約な$K$ベクトル空間は$K$のみ．$K$は$K$上1で生成されるため有限生成である．$K$準同型$K\to K$は1の像で決定される定数倍写像ゆえ同型か零写像である．$\hom_K(K,K)\cong K$ゆえ確かに可除である．
+	$A$が体$K$のとき，単純な$K$ベクトル空間は$K$のみ．$K$は$K$上1で生成されるため有限生成である．$K$準同型$K\to K$は1の像で決定される定数倍写像ゆえ同型か零写像である．$\hom_K(K,K)\cong K$ゆえ確かに可除である．
 \end{eg}
-ベクトル空間は"素材"である1次元ベクトル空間の和で表すことができたことを思い出し，続いて"素材"である既約加群の和で表せる空間を定義する．
-\begin{dfn}[完全可約]
-	$A$加群$V$が既約$A$加群の（有限とは限らない）和になるとき完全可約であるという．
+ベクトル空間は"素材"である1次元ベクトル空間の和で表すことができたことを思い出し，続いて"素材"である単純加群の和で表せる空間を定義する．
+\begin{dfn}[半単純加群]
+	$A$加群$M$が単純$A$加群の（有限とは限らない）和になるとき半単純であるという．
 \end{dfn}
 \begin{rmk}
-	0は0個の既約加群の和であるので完全可約である．
+	0は0個の単純加群の和であるので半単純である．
 \end{rmk}
 \begin{eg}
-	任意のベクトル空間は（選択公理を採用すれば）基底を持つため完全可約である．
+	任意のベクトル空間は基底を持つため半単純である．
 \end{eg}
-\begin{prop}[完全可約加群の性質]\label{prop:complete_summand}
+\begin{prop}[半単純加群の性質]\label{prop:complete_summand}
 	\begin{enu}
 		\item 以下は同値である．
 		\begin{enu}
-			\item $V$は完全可約である．つまり既約な部分加群の族$\{V_i\}_{i\in I}$があり
+			\item $M$は半単純である．つまり単純な部分加群の族$\{M_i\}_{i\in I}$があり
 			\begin{equation}
-				V=\sum_{i\in I}V_i\label{eq:complete_summand}
+				M=\sum_{i\in I}M_i\label{eq:complete_summand}
 			\end{equation}
 			となる．
-			\item $V$では完全可約な補空間を取れる．つまり\[
-				\forall U\leq V,\exists W\leq V, W\text{は完全可約かつ}V=U\oplus W.
+			\item $M$では半単純な補空間を取れる．つまり\[
+				\forall N\leq M,\exists L\leq M, L\text{は半単純かつ}V=N\oplus L.
 			\]
-			より詳しく(\ref{eq:complete_summand})のとき，$W=\sum_{i\in J}V_i\,(J\subseteq I)$とかける．
-			\item  $V$は直和で完全可約である．つまり
+			より詳しく(\ref{eq:complete_summand})のとき，$L=\sum_{i\in J}M_i\,(J\subseteq I)$とかける．
+			\item  $M$は直和で半単純である．つまり
 			\[
-				\exists \{W_i\}_{i\in J}, W_i\text{は既約かつ}V=\bigoplus_{i\in J}W_i.
+				\exists \{N_i\}_{i\in J}, N_i\text{は単純かつ}M=\bigoplus_{i\in J}N_i.
 			\]
-			より詳しく(\ref{eq:complete_summand})のとき，$\{W_i\}_{i\in J}\subseteq \{V_i\}_{i\in I}$とできる．
+			より詳しく(\ref{eq:complete_summand})のとき，$\{N_i\}_{i\in J}\subseteq \{M_i\}_{i\in I}$とできる．
 		\end{enu}
-		\item 完全可約性は和，部分，商に遺伝する．つまり完全可約加群$V,V_i$と$U\leq V$について，$\sum_{i\in I}V_i,U,V/U$は完全可約．
+		\item 半単純性は和，部分，商に遺伝する．つまり半単純加群$M,M_i$と$N\leq M$について，$\sum_{i\in I}M_i,N,M/N$は半単純．
 	\end{enu}
 \end{prop}
 \begin{proof}
 	\begin{enu}
 		\item
-		\underline{(i)$\implies$(ii)} 既約な部分加群の族$\{V_i\}_{i\in I}$を用いて$V=\sum_{i \in I}V_i$と表せる．
+		\underline{(i)$\implies$(ii)} 単純な部分加群の族$\{M_i\}_{i\in I}$を用いて$M=\sum_{i \in I}M_i$と表せる．
 		\[
-			S=\left\{J\subseteq I\,\bigg|\, U\cap\sum_{i\in J}V_i=0\right\}
+			S=\left\{J\subseteq I\,\bigg|\, N\cap\sum_{i\in J}M_i=0\right\}
 		\]
-		にZornの補題を用いることで$S$の極大元$J$を得る．$X:= U\oplus  \sum_{j\in J} V_j$とおく．$X\neq V$と仮定すると，$V_k\not\subseteq X$なる$k\in I\setminus J$が存在する．すると$J\subsetneq J\cup\{k\}\in S$となる．なぜなら$0\leq V_k\cap X< V_k$と$V_k$が既約であることから$V_k\cap X=0$であり，
+		にZornの補題を用いることで$S$の極大元$J$を得る．$X:= N\oplus  \sum_{j\in J} M_j$とおく．$X\neq M$と仮定すると，$M_k\not\subseteq X$なる$k\in I\setminus J$が存在する．すると$J\subsetneq J\cup\{k\}\in S$となる．なぜなら$0\leq X\cap M_k< M_k$と$M_k$が単純であることから$X\cap M_k=0$であり，
 		\[
-			v+w\in\left(V_k+\sum_{i\in J}V_i\right)\cap U\quad \left(v\in V_k, w\in \sum_{i\in J}V_i\right)
+			m+m'\in N\cap\left(M_k+\sum_{i\in J}M_i\right)\quad \left(m\in M_k, m'\in \sum_{i\in J}M_i\right)
 		\]
-		ならば$v\in X\cap V_k$ゆえ$v=w=0$であり，したがって$(V_k+\sum_{i\in J}V_i)\cap U=0$であるから．しかしこれは$J$の極大性に矛盾．よって$X=V$．\\
-		\underline{(ii)$\implies$(i)}\,$U=0$とすれば良い．\\
-		\underline{(i)かつ(ii)$\implies$(iii)}\,(i)より既約な部分加群$\{V_i\}_{i\in I}$を用いて$V=\sum_{i \in I}V_i$と表せる．
+		ならば
 		\[
-			T=\left\{J\subseteq I \,\bigg|\,\sum_{i\in J}V_i=\bigoplus_{i\in J}V_i\right\}
+			m = (m+m') - m' \in N\oplus  \sum_{j\in J} M_j = X
 		\]
-		にZornの補題を用いることで$T$の極大元$J$を得る．$X:=\bigoplus_{j\in J}V_j$とおく．(ii)より$V=X\oplus \sum_{i\in K}V_i$となる$K\subsetneq I\setminus J$を取れる．$K\neq \varnothing$ならば$k\in K\setminus J$について$J\cup\{k\}\in T$となるがこれは$J$の極大性に矛盾．よって$K=\varnothing$であり$V=X$．
+		より$m\in X\cap M_k$ゆえ$m=m'=0$であり，したがって$N\cap (M_k+\sum_{i\in J}M_i)=0$であるから．しかしこれは$J$の極大性に矛盾．よって$X=M$．\\
+		\underline{(ii)$\implies$(i)}\,$N=0$とすれば良い．\\
+		\underline{(i)かつ(ii)$\implies$(iii)}\,(i)より単純な部分加群$\{M_i\}_{i\in I}$を用いて$M=\sum_{i \in I}M_i$と表せる．
+		\[
+			T=\left\{J\subseteq I \,\bigg|\,\sum_{i\in J}M_i=\bigoplus_{i\in J}M_i\right\}
+		\]
+		にZornの補題を用いることで$T$の極大元$J$を得る．$X:=\bigoplus_{j\in J}M_j$とおく．(ii)より$M=X\oplus \sum_{i\in K}M_i$となる$K\subsetneq I\setminus J$を取れる．$K\neq \varnothing$ならば$k\in K\setminus J$について$J\cup\{k\}\in T$となるがこれは$J$の極大性に矛盾．よって$K=\varnothing$であり$V=X$．
 		\item
-		和については明らか．(1)より$V= U\oplus U'$なる完全可約部分群$U'$が存在する．$V/U\cong U'$ゆえ$V/U$は完全可約．$U'$の完全可約な補空間を$U''$とおくと，$U\cong V/U'\cong U''$より$U$は完全可約．
+		和については明らか．(1)より$M= N\oplus N'$なる半単純部分群$N'$が存在する．$M/N\cong N'$ゆえ$M/N$は半単純．$N'$の半単純な補空間を$N''$とおくと，$N\cong M/N'\cong N''$より$N$は半単純．\\
+		\underline{(iii)$\implies$(i)}明らか．
 	\end{enu}
 \end{proof}
-(1)の(ii)が完全可約の定義に採用されることもある．体の場合には，任意のベクトル空間が完全可約となった．そこでその環上の任意の加群が完全可約になるという意味で体に類似している代数のクラスを定めよう．
+(1)の(ii)が半単純の定義に採用されることもある．体の場合には，任意のベクトル空間が半単純となった．そこで性質(甲)「その環上の任意の加群が半単純になる」を持つという意味で体に類似している代数のクラスを定めよう．
 \begin{dfn}[半単純代数]
-	任意の右（resp. 左）$A$加群が完全可約であるとき，$F$代数$A$を右（resp. 左）半単純であるという．
+	任意の右（resp. 左）$A$加群が半単純であるとき，$F$代数$A$を右（resp. 左）半単純であるという．
 \end{dfn}
 後ほどわかるが，実は右半単純であることと左半単純であることは同値になる．よって単に半単純ということもある．体の類似物を定めることができたのでその性質を見ていこう．
-\begin{prop}[半単純代数の特徴付け]
+\begin{prop}[半単純代数の特徴付け]\label{prop:semisimple}
 	$F$代数$A$について
 	\[
-		A\text{が右半単純}\iff A\text{が右}A\text{加群として完全可約}
+		A\text{が右半単純}\iff A\text{が右}A\text{加群として半単純}
 	\]
 	である．
 \end{prop}
 \begin{proof}
 	\underline{$\implies$} 定義よりしたがう．
-	\underline{$\impliedby$} 任意に右$A$加群$V$をとる．
+	\underline{$\impliedby$} 任意に右$A$加群$M$をとる．
 	\[
-		\gvph:\bigoplus_{V}A\ni(a_v)_{v\in V}\mapsto \sum_{v\in V} a_vv\in V
+		\gvph:\bigoplus_{M}A\ni(a_m)_{m\in M}\mapsto \sum_{m\in M} a_m m\in M
 	\]
-	とおくと，$V\cong \bigoplus_{V}A/\ker \gvph$である．命題(\ref{prop:complete_summand})よりしたがう．
+	とおくと，$M\cong \bigoplus_{M}A/\ker \gvph$である．命題\ref{prop:complete_summand}(2)よりしたがう．
 \end{proof}
 ベクトル空間の場合，"素材"は1次元ベクトル空間の1種類のみだった．半単純代数上の加群の場合は実は1種類とは限らず，半単純代数のイデアルを用いて記述できる．
 \begin{dfn}[極小イデアル]
-	$F$代数$A$の右イデアルが右$A$加群として既約であるとき，極小右イデアルという．
+	$F$代数$A$の右イデアルが右$A$加群として単純であるとき，極小右イデアルという．
 \end{dfn}
-\begin{prop}[半単純代数の既約加群と極小イデアル]
-	$A$が右半単純であるとする．$A$は完全可約ゆえ極小右イデアルの族$\{V_i\}_{i\in I}$を用いて$A=\bigoplus_{i\in I} V_i$と書ける．このとき$A$の既約右$A$加群は$V_i$のいずれかと同型である．
+\begin{prop}[半単純代数の単純加群と極小イデアル]\label{prop:minideal}
+	$A$が右半単純であるとする．$A$は半単純ゆえ極小右イデアルの族$\{M_i\}_{i\in I}$を用いて$A=\bigoplus_{i\in I} M_i$と書ける．このとき$A$の単純右$A$加群は$M_i$のいずれかと同型である．
 \end{prop}
 \begin{proof}
-	既約右$A$加群$V$を任意にとる．$v\in V\setminus\{0\}$をとる．$vA=V$ゆえ$\gvph:A\ni x\mapsto vx\in V$は全射準同型．$J\subseteq I$があり，$A\cong \ker \gvph \oplus \bigoplus_{j\in J} W_j$となる．$\gvph$の全射性より$V\cong A/\ker\gvph \cong  \bigoplus_{j\in J} W_j$だが，$\#J \neq 1$なら$V$が既約であることに矛盾する．よって一意的に$j\in J$が存在し$V\cong W_j$．
+	単純右$A$加群$M$を任意にとる．$m\in M\setminus\{0\}$をとる．$mA=M$ゆえ$\gvph:A\ni a\mapsto ma\in M$は全射準同型．$J\subseteq I$があり，$A\cong \ker \gvph \oplus \bigoplus_{j\in J} M_j$となる．$\gvph$の全射性より$M\cong A/\ker\gvph \cong  \bigoplus_{j\in J} M_j$だが，$\#J \neq 1$なら$M$が単純であることに矛盾する．よって一意的に$j\in J$が存在し$M\cong M_j$．
 \end{proof}
-半単純代数は"素材"が1種類ではないという意味でまだ体とは類似し切ってはいない．そこで"素材"が1種類であるものを定義しよう．
+適宜明記するが議論を見通しよくするために，以下では\textbf{$A$は$F$上有限次元である}とする．
+半単純代数は性質(乙)「"素材"である単純加群が1種類のみ」を持たない．そこで半単純に加えそのような性質を持つ代数を定めたい．一般的な定義と足並みを揃えるために，一度別の条件から代数を定め，有限次元の場合にはこの条件が半単純であり性質(乙)を持つことと同値になることを見よう．別の条件とは，体が非自明なイデアルを持たないことに対応するものである．
 \begin{dfn}[単純代数]
-	$F$代数が右半単純であり，$0$と自身以外に右イデアルを持たないとき，単純であるという．
+	$F$代数$A$が非自明な両側イデアルを持たないとき（i.e. 両側$A$加群として単純であるとき），単純であるという．
 \end{dfn}
-この条件は目的に対して強すぎるように見えるかもしれない（0，自身以外に右イデアルがあっても極小右イデアルの右加群としての同型類は1つかもしれない）．しかし実はこのあと見るようにこれが目的のために必要十分な条件である．また先ほども述べたように右半単純性と左半単純性は同値ゆえ，単に"単純"という言葉遣いをしているが，それを見るまでは明示的に右単純と書くことにする．\\
-単純代数は構造をある程度決定できる．そのためにいくつか準備をしよう．
-\begin{lem}
-	$D$を可除$F$代数とする．このとき
+単純代数の例を1つあげ，性質(甲)，(乙)を持つことを確認しよう．
+\begin{egbox}[可除代数は単純代数]\label{eg:div_is_simple}
+	$D$を有限次元可除$F$代数とする．
+	\begin{enumerate}
+		\item $D$は単純$F$代数である．
+		\item 単純左$D$加群は$D$と同型である．
+		\item 左$D$加群は$D$の直和と同型である．
+	\end{enumerate}
+\end{egbox}
+\begin{proof}
+	\begin{enumerate}
+		\item $I\neq 0$を$D$の両側イデアルとする．$D$は可除であるから，$i\in I\setminus \{0\}$として任意の$d\in D$に対して$d=di^{-1}\cdot i\in I$ゆえ，$I=D$．よって非自明な両側イデアルを持たない．
+		\item $M$を単純左$D$加群とする．$m\in M\setminus \{0\}$をとる．$M$の単純性より$Dm=M$ゆえ
+		      \[
+			      \gvph:D\ni d\mapsto dm\in M
+		      \]
+		      は全射準同型．(1)より$\ker \gvph = 0$または$\ker \gvph = D$であり，後者ならば$m=0$に矛盾．よって$\ker \gvph = 0$であり，$\gvph$は同型．
+		\item $M$を左$D$加群とする．
+		      \[
+			      \gvph:\bigoplus_{M}D\ni(d_m)_{m\in M}\mapsto \sum_{m\in M} d_m m\in M
+		      \]
+		      とおくと，$M\cong \bigoplus_{M}D/\ker \gvph$である．命題\ref{prop:complete_summand}(2)よりしたがう．
+	\end{enumerate}
+\end{proof}
+別の単純代数の重要な例を見るために補題を用意する．
+\begin{lem}[行列環のイデアルはイデアルの行列環]\label{lem:matrix_ideal}
+	$R$を$F$代数，$r\in \bbZ_{>0}$とする．$\m_r(R)$の両側イデアルは
+	\[
+		\{\m_r(R)\text{の両側イデアル}\} = \{\m_r(I)\mid I\text{は}R\text{の両側イデアル}\}
+	\]
+	である．特に$D$が可除であるとき，$\m_r(D)$は非自明な両側イデアルを持たない．
 \end{lem}
-% lemma18.9->thm18.11->simpleの定義->thm18.12
+\begin{proof}($\supseteq$)明らか．\\
+	($\subseteq$)$J\leq \m_r(R)$を両側イデアルとする．
+	\[
+		I=\{a\in R\mid a\text{を成分に持つ}J\text{の元が存在する}\}
+	\]
+	$(i,j)$成分のみ1で他が0である行列を$E_{i,j}$とする．
+	\begin{equation}
+		E_{i,j}XE_{k,l} = (X\text{の}(j,k)\text{成分})E_{i,l} \quad (X\in \m_r(R))\label{eq:matrix_ideal}
+	\end{equation}
+	である．$x,y\in I$が$X,Y\in J$の$(i,j),(k,l)$成分に現れるとすると
+	\[
+		Z=rE_{1,i}XE_{j,1}s + E_{1,k}YE_{l,1} \in J（r,s\in R）
+	\]
+	であり，式(\ref{eq:matrix_ideal})より$(Zの(1,1)成分)=rxs+y$ゆえ，$I$は両側イデアルである．また再び式(\ref{eq:matrix_ideal})より
+	\begin{align*}
+		\m_r(I)\supseteq J & \supseteq (\{ E_{i,j}XE_{k,l}\mid X\in J, i,j,k,l=1,\ldots,r\}\text{が生成する両側イデアル}) \\
+		                   & = (\{xE_{i,j}\mid x\in I,i,j=1,\ldots,r\}\text{が生成する両側イデアル})                      \\
+		                   & = \m_r(I)
+	\end{align*}
+	ゆえ，$J=\m_r(I)$．
+\end{proof}
+補題が用意できたので，単純代数の重要な例を見て，さらにそれが所望の性質を持つことも見ておこう．
+\begin{egbox}[可除代数上の行列代数は単純]\label{eg:matrices_is_simple}
+	$D$を可除$F$代数，$r\in\bbN$，$A=M_r(D)$とする．
+	\begin{enumerate}
+		\item $A$は単純$F$代数である．
+		\item $A$は右$A$加群として極小右イデアルの有限直和で書け，直和因子は互いに右加群として同型である．
+		\item $A$は右半単純であり，単純右$A$加群は全て同型である．
+	\end{enumerate}
+\end{egbox}
+\begin{proof}
+	\begin{enumerate}
+		\item 補題\ref{lem:matrix_ideal}より$A$は非自明な両側イデアルを持たない．よって単純$F$代数である．
+		\item	$M_i$を第$i$行以外の成分が全て0であるような行列全体のなす$\m_r(D)$の部分集合とする．$M_i$は右イデアルであり，右$\m_r(D)$加群として$D^r$と同型である．また例\ref{eg:d^r_is_irr}より$D^r$は単純ゆえ$M_i$は極小右イデアルである．したがって$\m_r(D)$は
+		      \[
+			      \m_r(D) = M_1\oplus\cdots\oplus M_r
+		      \]
+		      と右加群として同型である極小右イデアルの直和となる．したがって命題\ref{prop:minideal}より右単純$F$代数である．
+		\item (2)より$A$は右$A$加群として半単純ゆえ命題\ref{prop:semisimple}より右半単純$F$代数である．再び(2)と命題\ref{prop:minideal}より単純右$A$加群は全て同型である．
+	\end{enumerate}
+\end{proof}
+実は有限次元の場合\textbf{単純$F$代数は可除代数上の行列代数しかない}．そして先に述べた通り，単純代数であることと半単純であり性質(乙)「"素材"である単純加群が1種類のみ」を持つことが同値である．証明の関係からこれらを一緒に示す．
+\begin{thm}[有限次元単純代数の構造定理]\label{thm:simple_struct}
+	有限次元$F$代数$A$について以下は同値である．
+	\begin{enu}
+		\item\label{item:is_simple} $A$は単純$F$代数である．
+		\item\label{item:is_matrix} 有限次元可除$F$代数$D$と$r\in\bbZ_{>0}$が存在し$A\cong \m_r(D)$である．
+	\end{enu}
+	さらに$D$と$r$は$A$から（同型を除いて）一意的に定まる．
+\end{thm}
+\begin{prop}[有限次元単純代数の特徴付け]\label{prop:simple_char}
+	有限次元$F$代数$A$について以下は同値である．
+	\begin{enu}
+		\item $A$は単純$F$代数である．
+		\stepcounter{enumi}
+		\item\label{item:is_sum_of_ideal}\footnotemark[1] $A$は右$A$加群として極小右イデアルの有限直和で書け，直和因子は互いに右加群として同型である．
+		\item\label{item:is_semisimple}\footnotemark[1] $A$は右半単純であり，単純右$A$加群は全て同型である．
+	\end{enu}
+\end{prop}\footnotetext[1]{同値命題の番号が定理\ref{thm:simple_struct}と命題\ref{prop:simple_char}で被らないように調整している．}
+\begin{proof}[\textbf{定理\ref{thm:simple_struct},命題\ref{prop:simple_char}の証明}](\ref{item:is_simple})$\implies$(\ref{item:is_sum_of_ideal})$\implies$ (\ref{item:is_semisimple})$\implies$(\ref{item:is_matrix})$\implies$(\ref{item:is_simple})で示し，最後に定理\ref{thm:simple_struct}の一意性を示す．\\
+	\underline{(\ref{item:is_simple})$\implies$(\ref{item:is_sum_of_ideal})} $A$の極小右イデアル$M$をとる．命題\ref{prop:irr_mod}(3)，注意\ref{rmk:end}(1)より$E=\End_A(M)$は有限次元可除$F$代数．よって例\ref{eg:div_is_simple}(3)より$M=Ee_1\oplus\cdots\oplus Ee_r$なる$e_1,\ldots,e_r\in M$が存在する．そこで$g=(e_1,\ldots,e_r)\in M^r$とし，
+	\[
+		\gvph:A\ni a\mapsto ga\in M^r
+	\]
+	とする．まずこれが単射であることを示す．$\ker\gvph$は両側イデアルである．なぜなら$\gvph(a)=0$のとき$e_1a=\ldots=e_ra=0$ゆえ任意の$b\in A$で$gba=0$，つまり$\gvph(ba)=0$であり，また$g(ab)=0$であるから．さらに$1\notin\ker\gvph$ゆえ$\ker\gvph\neq A$である．これと$A$が単純であることから$\ker\gvph=0$ゆえ$\gvph$は単射である．したがって$A\cong gA\subseteq M^r$であり，これと$命題\ref{prop:complete_summand}$よりある$0<s\leq r$が存在し$A\cong M^s$となる．
+	\\
+	\underline{(\ref{item:is_sum_of_ideal}) $\implies$ (\ref{item:is_semisimple})}命題\ref{prop:semisimple},命題\ref{prop:minideal}よりしたがう．\\
+	\underline{(\ref{item:is_semisimple})$\implies$(\ref{item:is_matrix})} $A$を左$A$加群と見做したものを${}_AA$を書くことにする．注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$\End_A({}_AA)\cong A$であるので，$\End_A({}_AA)$が可除代数上の行列代数と同型であることを見る．$D=\End_A(M)$とおくと命題\ref{prop:irr_mod}(3)より$D$は可除$F$代数である．$A$の極小右イデアル$M$をとる．$A$は半単純であり$F$上有限次元ゆえ$A=M^r(r\in\bbN)$と書ける．よって命題\ref{prop:ds_and_end}より
+	\[
+		\End_A({}_AA)\cong \End_A(M^r)\cong \m_r(\End_A(M))=\m_r(D).
+	\]
+	以上より，可除$F$代数$D$と$r\in\bbN$が存在し$A\cong\m_r(D)$である．\\
+	\underline{(\ref{item:is_matrix})$\implies$(\ref{item:is_simple})} 例\ref{eg:matrices_is_simple}よりしたがう．\\
+	\underline{ 一意性 }$D,E$を可除$F$代数，$r,s\in\bbN, A=\m_r(D),B=\m_s(E)$とする．$A\cong B$と仮定して$D\cong E,r=s$を示す．例\ref{eg:d^r_is_irr}より$D^r,E^s$は右$A$加群,右$B$加群として単純であるので，(\ref{item:is_matrix})$\implies$(\ref{item:is_semisimple})より$D^r\cong E^s$．これと例\ref{eg:div_ds}より，
+	\[
+		D\cong\End_A(D^r)\cong\End_B(E^s)\cong E
+	\]
+	である．さらにこれより$D^r\cong E^s\cong D^s$ゆえ$r=s$である．
+\end{proof}
+今後のために単純代数の性質をいくつか見よう．
+\begin{lem}[同次元なら同型]\label{prop:simple_lem}
+	$A$を有限次元単純$F$代数とする．右$A$加群$M,N$について，
+	\[
+		\dim_F M = \dim_F N \implies M\cong N
+	\]
+\end{lem}
+\begin{proof}
+	命題\ref{prop:simple_char}(3)より従う．
+\end{proof}
+\begin{lem}[非零冪等元による次数減少]\label{lem:idempotent_cut}
+	$D$を可除$F$代数とする．$e^2=e\neq 0$なる$e\in \m_r(D)$について，ある$0<s\leq r$が存在し$e\m_r(D)e\cong \m_s(D)$となる．
+\end{lem}
+\begin{proof}
+	$M=D^r$とおく．例\ref{eg:div_ds}より$D=\End_A(M),A=\End_D(M)$であった．$\End_D(Me)$を2通りの方法で計算する．まず$\End_D(Me)= eAe$を示す．$\End_D(Me)\supseteq eAe$は明らかである．$\End_D(Me)\subseteq eAe$について見る．$f=1-e$とおくと，
+	\[
+		ef=fe=0,\quad f^2=f, \quad M=Me\oplus Mf
+	\]
+	である．任意の$a\in\End_D(Me)$について，$b|_{Me}=a,b|_{Mf}=0$なる$b\in \End_F(M)$をとる．$b$と$D$の作用の可換性より$b\in\End_D(M)=A$である．このとき$a=ebe$である．よって$\End_D(Me)\subseteq eAe$．以上より$\End_D(Me)= eAe$．次に$\End_D(Me)$を別の方法で計算する．例\ref{eg:div_is_simple}より$Me=D^s$なる$s$が存在し，$Me\neq 0$と$M\ni m\mapsto me\in Me$の全射より$0<s\leq r$．この$s$について
+	\[
+		\End_D(Me)\cong \End_D(D^s)\cong \m_s(D).
+	\]
+	以上より$e\m_r(D)e\cong \m_s(D)$．
+\end{proof}
+\begin{lem}
+	$F$を代数閉体とする．
+	\begin{enumerate}
+		\item 有限次元可除$F$代数は$F$のみである．
+		\item 有限次元単純$F$代数は$\m_r(F)(r\in\bbN)$のみである．
+	\end{enumerate}
+\end{lem}
+\begin{proof}
+	\begin{enumerate}
+		\item $D$を有限次元可除$F$代数とする．任意の$d\in D$について$F[d]$は$F$の有限次拡大体ゆえ代数拡大体なので$F[d]=F$，つまり$d\in F$．よって$D=F$．
+		\item 定理\ref{thm:simple_struct}と(1)よりしたがう．
+	\end{enumerate}
+\end{proof}
+加群の場合，半単純は単純加群の直和である，という意味になった（命題\ref{prop:complete_summand}）．実は有限次元代数の場合にも同様の関係が成り立つ．
+\begin{thm}[Artin-Wedderburnの定理（有限次元半単純代数の構造定理）]\label{thm:artin_wedderburn}
+	有限次元$F$代数$A$について，以下は同値である．
+	\begin{enu}
+		\item $A$は右半単純である．
+		\item $A$は有限個の有限次元単純$F$代数の直和である．つまり，ある有限個の有限次元単純$F$代数$A_i$が存在し
+		\[
+			A\cong \bigoplus_{i=1}^s A_i
+		\]
+		と書ける．
+	\end{enu}
+\end{thm}
+\begin{proof}
+	\underline{(2)$\implies$(1)} 命題\ref{prop:simple_char}より$A_i$は
+	\[
+		A_i=\bigoplus_{j=1}^{r_i} M_{ij}
+	\]
+	と極小右イデアル$M_{ij}$の直和として書ける．$A=\bigoplus_{i=1}^s A_i$として$A_i\subseteq A$とみなす．$i\neq j$ならば$A_iA_k=\{0\}$ゆえ，$M_{ij}$は$A$の極小右イデアルでもある．
+	\[
+		A=\bigoplus_{i=1}^s \bigoplus_{j=1}^{r_i} M_{ij}
+	\]
+	ゆえ，命題\ref{prop:complete_summand}(3)より$A$は右半単純$A$加群であり，命題\ref{prop:semisimple}より右半単純$F$代数である．
+	\\
+	\underline{(1)$\implies$(2)} $A$を右$A$加群とみなしたものを$A_A$と書くことにする．注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$A\cong \End_A(A_A)$であるため，$\End_A(A_A)$が単純代数の有限直和になっていることを示す．命題\ref{prop:semisimple}より$A_A$は半単純であるので，命題\ref{prop:complete_summand}(1)より単純右$A$加群$M_i$を用いて
+	\[
+		A_A\cong\bigoplus_{i=1}^s {M_i}^{r_i}
+	\]
+	と書ける．ただし$i\neq j$ならば$M_i\not\cong M_j$とする．自然な単射と射影を用いて
+	\[
+		M_i\into\bigoplus_{i=1}^s {M_i}^{r_i}\onto M_j
+	\]
+	を考えると，命題\ref{prop:irr_mod}(2)より$i\neq j$ならばこれは零写像である．よって
+	\[
+		\End_A(A_A)\cong \bigoplus_{i=1}^s \End_A({M_i}^{r_i}) \cong \bigoplus_{i=1}^s \m_{r_i}(D_i)
+	\]
+	である．ただし$D_i=\End_A(M_i)$であり，命題\ref{prop:irr_mod}(3)よりこれは可除$F$代数である．したがって定理\ref{thm:simple_struct}より各$\m_{r_i}(D_i)$は有限次元単純$F$代数であり，示された．
+\end{proof}
 %%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
 %\input{thebibliography.tex}
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
