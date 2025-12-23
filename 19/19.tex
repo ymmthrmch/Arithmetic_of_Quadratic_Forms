@@ -256,10 +256,10 @@ $A\otimes B$について，性質を簡単に復習する．
   \end{enumerate}
 \end{proof}
 \begin{thm}[CSAの次元は平方数]
-  $A$が中心的単純$F$代数ならば$[A:F]$は平方数である．
+  中心的単純$F$代数$A$とその可除部分について$[A:F],[D:F]$は平方数である．$\sqrt{[A:F]}$を$A$の次数，$\sqrt{[D:F]}$を$A$の指数という．
 \end{thm}
 \begin{proof}
-  定理\ref{thm:csa_judgement}(2)よりしたがう．
+  定理\ref{thm:csa_judgement}(2)より$[A:F]$が平方数であることがしたがう．$A$の容量を$r$とすると$A\cong \m_r(D)$より$[A:F]=[D:F]r^2$であるため$[D:F]$も平方数である．
 \end{proof}
 さらに中心的単純代数の性質を調べていくために反転代数を導入しよう．行列の転置や，四元数代数の共役は，加法やスカラー倍は保存するが
 \[
@@ -369,7 +369,7 @@ $A\otimes B$について，性質を簡単に復習する．
   両側$(A,A)$加群$A$を考えることで右$A^{\op}\otimes_F A$加群$A$を得る．定理\ref{thm:csa_tensor_preserves_sa_ssa_csa}より$A^{\op}\otimes_F A$は中心的単純$F$代数である．$A^{\op}\otimes_F A$の$A$への作用は$F$準同型$\gvph:A^{\op}\otimes_F A\to \End_F(A)$を導く．単純性と$\im\gvph\neq 0$より$\ker\gvph=0$である．これと$[A^{\op}\otimes_F A:F]=r^2=[\End_F(A):F]$より$\gvph$は同型である．よって$A^{\op}\otimes_F A\cong\End_F(A)=\m_r(F)$である．
 \end{proof}
 次に中心的単純台数の単純な部分代数について見ていく．単純部分代数たちは$A^\times$の共役作用と，中心化$\Zen$を通じて互いに関係しあっている．まず共役作用を通じた関係を見よう．
-\begin{thm}[CSAのSA部分代数は共役]\label{thm:sub_sa_are_conj}
+\begin{thm}[CSAの部分SAは共役]\label{thm:sub_sa_are_conj}
   $A$を中心的単純$F$代数，$B$を単純$F$代数とする．単射準同型$\gs,\gt:B\to A$に対してある$\gg\in A^\times$が存在し，任意の$b\in B$に対して
   \[
     b^\gt = \gg b^\gs \gg^{-1}
@@ -404,15 +404,16 @@ $A\otimes B$について，性質を簡単に復習する．
 \begin{proof}
   $M=D^r$とおくと，$M$は例\ref{eg:d^r_is_irr}より単純右$A$加群である．命題\ref{prop:simple_char}よりある$s\in\bbN$があり$W\cong M^s$が成り立つ．よって命題\ref{prop:ds_and_end},例\ref{eg:div_ds}より
   \[
-    \End_A(W)\cong \m_s(\End_A(V))\cong\m_s(D).
+    \End_A(W)\cong \m_s(\End_A(V))\cong\m_s(D),
   \]
-  さらに
+  すなわち$\End_A(W)$は可除部分$D$，容量$s$の単純代数である．
+  さらに$[D:F]=t$とおくと
   \[
-    [W:F]=[D:F]rs,\quad [A:F]=[D:F]r^2,\quad [\End_A(W):F]=[D:F]s^2
+    [W:F]=trs,\quad [A:F]=tr^2,\quad [\End_A(W):F]=ts^2
   \]
   ゆえ$[W:F]^2=[A:F][\End_A(W):F]$が成り立つ．
 \end{proof}
-\begin{thm}[CSAでのSAの中心化代数]
+\begin{thm}[CSAの部分SAの中心化代数]\label{thm:centraliser_of_simple_subalg}
   $A$を中心的単純$F$代数，$B$をその単純$F$部分代数，$C=\Zen_A(B)$とする．このとき以下が成り立つ．
   \begin{enumerate}
     \item $C$は単純$F$代数．
@@ -441,15 +442,54 @@ $A\otimes B$について，性質を簡単に復習する．
   \]
   でありこれと例\ref{eg:tensor_of_matrix}より，$D\otimes_F B^{\op}$と$A\otimes_F B^{\op}$の可除部分は一致する．よって(3)がしたがう．(2)を$C$に対して用いると$[A:F]=[C:F][\Zen_A(C):F]$である．これと(2)より$[B:F]=[\Zen_A(C):F]$であり，$B\subseteq \Zen_A(C)$ゆえ(4)の$\Zen_A(C)=B$が成り立つ．
 \end{proof}
-\begin{thm}
-
+続いて中心的単純代数の部分体の性質を見よう．
+\begin{thm}[CSAの部分体の性質]\label{thm:subfield_of_csa}
+  $A$を中心的単純$F$代数，$K$をその部分体とする．$\Zen_A(K)$は中心的単純$K$代数であり，$A$の次数は$\Zen_A(K)$の次数の$[K:F]$倍，すなわち
+  \[
+    \sqrt{[A:F]}=\sqrt{[\Zen_A(K):K]}[K:F]
+  \]
+  である．また
+  \[
+    \sqrt{[A:F]}=[K:F](=m\text{とおく})\iff \Zen_A(K)=K
+  \]
+  であり，この同値な条件を満たすとき$A\otimes_F K\cong \m_m(K)$となる．
 \end{thm}
-\begin{lem}[CDAは$F$の分離拡大を含む]
-
+\begin{proof}
+  $K$は単純$F$代数ゆえ定理\ref{thm:centraliser_of_simple_subalg}より$\Zen_A(K)$は単純であり，(4)$A$でのその中心化代数は$K$であるため，中心的単純$K$代数である．さらに
+  \[
+    [A:F]=[\Zen_A(K):F][K:F]=[\Zen_A(K):K][K:F]^2
+  \]
+  である．よって主張の同値も成り立つ．これが成り立つとき$\Zen_A(K)=K$の可除部分が$K$であることと再び定理\ref{thm:centraliser_of_simple_subalg}より，$A\otimes_F K\cong K^{\op}\otimes_F A$の可除部分は$K$である．$[A\otimes_F K:F]=[A:F][K:F]=m^2[K:F]$より容量は$m$である．したがって$A\otimes_F K\cong\m_m(K)$である．
+\end{proof}
+中心的単純代数を中心的可除代数に絞ってさらに性質を見ていこう．
+\begin{lem}[CDAは$F$の分離拡大を含む]\label{lem:cda_contains_sep_ex}
+  $D\supsetneq F$が中心的可除$F$代数であるとき，$D$は$F$の真の分離拡大体を含む．
 \end{lem}
-\begin{thm}[CDAが含む分離拡大の次数]
-
+\begin{proof}
+  任意に$d\in D\setminus F$をとる．$F[d]/F$は有限次拡大である．よってある$d$で$F[d]/F$が純非分離拡大でなければ$F$の$F[d]$での分離閉包は$F$の真の拡大体になる．よってある$d$で$F[d]/F$が純非分離拡大でないことを示せば良い．任意の$d\in D\setminus F$に対して$F[d]/F$が純非分離拡大であると仮定して，ある$c\in D\setminus F$で$F[c]$の非自明な$F$同型$\gs$が存在することを示すことで矛盾させる．$F$の標数は$p>0$とおける．$[F[d]:F]=q$とすると$e\in\bbN$が存在し$q=p^e$となる．$u=d^{p^{e-1}}$とおくと$u\notin F, u^p=d^q\in F, [F[u]:F]=p$である．
+  \[
+    \gs:D\ni x\mapsto uxu^{-1}\in D
+  \]
+  とする．$\gs\in\End_F(D)$であり，$u^p=1$より$\gs^p=1$，$u\notin F=\Zen(D)$より$\gs\neq 1$である．すなわち$(\gs-1)^p=0,\gs-1\neq 0$である．$(\gs-1)^r\neq 0$なる最大の$r\in\bbN$をとる．$1<r<p$である．$(\gs-1)^r x\neq 0$なる$x\in D$について
+  \[
+    a=(\gs-1)^{r-1}x,\quad b=(\gs-1)^rx
+  \]
+  とおく．$\gs(a)-a=b, \gs(b)-b=0$である．$c=a/b$とおくと
+  \[
+    \gs(c)=\frac{\gs(a)}{\gs(b)}=\frac{a+b}{b}=c+1
+  \]
+  である．よって$\gs|_{F[c]}$は$F[c]$の非自明な$F$同型である．
+\end{proof}
+\begin{thm}[CDAは指数次分離拡大を含む]
+  $D$を中心的可除$F$代数とする．$D$は$[D:F]=[K:F]^2$，すなわち拡大次数が$D$の指数となる$F$の分離拡大体$K$を含む．
 \end{thm}
+\begin{proof}
+  $[D:F]=m^2$とおく．$m=1$なら明らか．$m>1$について考える．補題\ref{lem:cda_contains_sep_ex}より$D$は$F$の真の分離拡大$K$を含む．$K$を$[K:F]$が最大になるようにとる．$[K:F]\neq m$と仮定して矛盾を導く．$\Zen_D(K)$は$K$と異なる中心的可除$K$代数である．なぜなら定理\ref{thm:subfield_of_csa}より$\Zen_D(K)$は中心的単純$K$代数であり次数を$s$とおくと$m=s[K:F]$ゆえ$s\neq 1$，つまり$\Zen_D(K)\supsetneq K$であり．さらに$\Zen_D(K)\subseteq D$であり$d\in D$について，
+  \[
+    d\in\Zen_D(K)\iff \forall  x\in K dx=xd\iff x\in K^\times, x^{-1}d^{-1}=d^{-1}x^{-1} \implies d^{-1}\in \Zen_D(K)
+  \]
+  ゆえ$\Zen_D(K)$は可除代数であるから．補題\ref{lem:cda_contains_sep_ex}より$\Zen_D(K)$は$K$の真の分離拡大$L$を含む．$[L:F]>[K:F]$であるので$K$の取り方に矛盾する．
+\end{proof}
 \begin{dfn}[表現]
 
 \end{dfn}
