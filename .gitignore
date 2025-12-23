@@ -13,3 +13,6 @@
 *.dvi
 *.lof
 *.lot
+
+# ドキュメント
+/memos
