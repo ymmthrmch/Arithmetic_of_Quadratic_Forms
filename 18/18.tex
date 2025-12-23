@@ -26,7 +26,7 @@
 	\begin{itemize}
 		\item $F$：体．
 		\item $A$：$F$代数．
-		\item $M,N$：（特に断りがなければ左）$A$加群．
+		\item $M,N$：（特に断りがなければ右）$A$加群．
 	\end{itemize}
 \end{set}
 ベクトル空間，すなわち体上の加群は，
@@ -37,7 +37,7 @@
 などのいい性質を多く持つ．加群もこのような性質を持っていれば嬉しいが，もちろん一般には成り立たない．そこでその環上の加群がベクトル空間のような性質(甲)，(乙)を持つという意味で体と類似している環のクラスをうまく定め，その性質を調べよう．まず環への適当な条件として，以下に定める有限次元$F$代数であることを課す\footnote{有限次元の条件はなるべく課さずに進め，課す場合には明記する．また有限次元という条件はアルティンであるという条件に緩めることができる．}．これにより加群をベクトル空間とみなすことができ，使える道具が増える．簡単に言えば$F$代数とは体$F$を中心に含む環のことである．
 \begin{dfn}[$F$代数]
 	\begin{enu}
-		\item $\bbZ$加群$(A,+)$と演算$\cdot$，写像$\gvph:F\to \End A$の組であって以下を満たすものを$F$代数という．
+		\item $\bbZ$加群$(A,+)$と演算$\cdot$，写像$\gvph:F\to \End_\bbZ(A)$の組であって以下を満たすものを$F$代数という．
 		\begin{enu}
 			\item $(A,+,\gvph)$は$F$ベクトル空間．
 			\item $(A,+,\cdot)$は（単位的）環．
@@ -50,23 +50,26 @@
 	\end{enu}
 \end{dfn}
 \begin{rmk}
-	最初にいくつか注意をしておく．まず本稿で述べることは基本的に左右対称である．つまり右作用や右加群に対して成り立つことは適切に書き換えることで左作用や左加群に対しても成り立つ．また$a$を$m$に右作用させるとき$ma$と書くが明示したいときは$m\cdot a$と書く．
+	最初にいくつか注意をしておく．まず本稿で述べることは基本的に左右対称である．つまり右作用や右加群に対して成り立つことは適切に書き換えることで左作用や左加群に対しても成り立つ．
 \end{rmk}
 有限次元$F$代数$A$上の加群$M$の構造を調べていく．まずそのための道具として自己準同型代数を用意する．
 \begin{dfn}[自己準同型代数]
-	$M$を右$A$加群とする．
-	\begin{itemize}
-		\item $\End_A(M):=\{\gvph:M\to M\mid A\text{線型}\}$．
-		\item $(\gvph +\gps)(m):=\gvph(m)+\gps(m)$．
-		\item $(\gvph\gps)(m):=\gps(\gvph(m))$．
-		\item $(\ga\gvph)(m):=\ga\gvph(m)$．
-	\end{itemize}
-	これらにより$\End_A(M)$は$F$代数であり，$M$に左から作用する．\\
-	$M$が左$A$加群の場合，
-	\[
-		(\gvph\gps)(m):=\gps(\gvph(m)),\quad (\ga\gvph)(m):=\ga\gvph(m)
-	\]
-	と定め，$M$に右から作用する．
+	\begin{enumerate}
+		\item $M$を右$A$加群とみなしたものを$M_A$，左$A$加群とみなしたものを${}_AM$で表す．特に環（または代数）$A$を右$A$加群，左$A$加群とみなしたものをそれぞれ$A_A,{}_AA$とかく．
+		\item $M$を右$A$加群とする．
+		\begin{itemize}
+			\item $\End_A(M):=\{\gvph:M\to M\mid A\text{線型}\}$．
+			\item $(\gvph +\gps)(m):=\gvph(m)+\gps(m)$．
+			\item $(\gvph\gps)(m):=\gps(\gvph(m))$．
+			\item $(\ga\gvph)(m):=\ga\gvph(m)$．
+		\end{itemize}
+		これらにより$\End_A(M)$は$F$代数であり，$M$に左から作用する．\\
+		$M$が左$A$加群の場合，
+		\[
+			(\gvph\gps)(m):=\gps(\gvph(m)),\quad (\ga\gvph)(m):=\ga\gvph(m)
+		\]
+		と定め，$M$に右から作用する．
+	\end{enumerate}
 \end{dfn}
 \begin{rmk}\label{rmk:end}
 	\begin{enu}
@@ -76,10 +79,10 @@
 			                        & \iff \dim_F \End_F(M)<\infty      \\
 			                        & \implies \dim_F \End_A(M)<\infty.
 		\end{align*}
-		\item \label{item:end_of_it_is_itself}$A$を右$A$加群とみなしたとき，$\End_A(A)$は左スカラー倍全体であり，$A$と$F$同型である．具体的には
+		\item \label{item:end_of_it_is_itself}$A$を右$A$加群とみなした$A_A$について，$\End_A(A_A)$は左スカラー倍全体であり，$A$と$F$同型である．具体的には
 		\begin{align*}
-			\End_A(A)\ni f\longmapsto f(1)\in A \\
-			\End_A(A)\ni (x\mapsto ax)\longmapsfrom a \in A
+			\End_A(A_A)\ni f\longmapsto f(1)\in A \\
+			\End_A(A_A)\ni (x\mapsto ax)\longmapsfrom a \in A
 		\end{align*}
 		が$F$同型を与える．
 		\item\label{item:end_of_end}
@@ -92,6 +95,7 @@
 		\end{align*}
 	\end{enu}
 \end{rmk}
+$V$を1次元$K$ベクトル空間とすると，$\End_K(V)\cong K,\End_K(V^r)\cong\m_r(K)$であった．この類似が$F$代数$A$上の加群に対しても成り立つ．
 \begin{prop}[有限直和の自己準同型代数は行列代数]\label{prop:ds_and_end}
 	$M$を左$A$加群，$N=M^r$（$M$成分の$r$次行ベクトル全体）とする．このとき$F$代数として
 	\[
@@ -144,7 +148,7 @@
 	\[
 		\End_D(M)\cong\m_r(\End_D(D))\cong\m_r(D).
 	\]
-	$\End_A(M)$について考える．$D\subseteq A$に制限すると命題\ref{prop:ds_and_end}より$\End_{D(\subseteq A)}(M)\cong\m_r(D)$である．$\End_{D(\subseteq A)}(M)\supseteq\End_A(M)$ゆえ，$\End_A(M)$は$\m_r(D)$のうち$A$の作用と可換なもの全体である．この条件を書き下していこう．$\End_{D(\subseteq A)}(M)=\m_r(D)$の左作用は命題\ref{prop:ds_and_end}を適切に左右逆に書き換えると，$a\in\m_r(D),m\in M$として$a\cdot m=m^{\op}a^{\op}$である．ただし$(-)^{\op}$は引数の各成分を反対環の元とみなす演算子である．$A$の右作用は$m\cdot a=ma$であった．よって
+	$\End_A(M)$について考える．$D\subseteq A$に制限すると命題\ref{prop:ds_and_end}より$\End_{D(\subseteq A)}(M)\cong\m_r(D)$である．$\End_{D(\subseteq A)}(M)\supseteq\End_A(M)$ゆえ，$\End_A(M)$は$\m_r(D)$のうち$A$の作用と可換なもの全体である．この条件を書き下していこう．$\End_{D(\subseteq A)}(M)=\m_r(D)$の左作用は命題\ref{prop:ds_and_end}を適切に左右逆に書き換えると，$a\in\m_r(D),m\in M$として$a\cdot m=m^{\op}a^{\op}$である．ただし$(-)^{\op}$は引数の各成分を反転環の元とみなす演算子である（定義\ref{dfn:reciprocal}を参照）．$A$の右作用は$m\cdot a=ma$であった．よって
 	\[
 		(b\cdot m)\cdot a = b\cdot (m\cdot a) \iff (m^{\op}b^{\op})^{\op}a=(ma)^{\op}b^{\op}.
 	\]
@@ -167,8 +171,7 @@
 \end{eg}
 もう一つ重要な単純加群の例を見ておこう．
 \begin{egbox}[$D^r$は単純右$\m_r(D)$加群]\label{eg:d^r_is_irr}
-	$D$を可除$F$代数，$A=\m_r(D),M=D^r$とする．
-	$M$は単純な右$A$加群である．
+	$D$を可除$F$代数，$A=\m_r(D),M=D^r$とする．$M$は単純な右$A$加群である．
 \end{egbox}
 \begin{proof}
 	任意に0でない部分加群$N\leq M$をとる．$n=(n_i)\in N\setminus\{0\}$をとる．$n_i\neq 0$なる$i$が取れる．任意の$m=(m_i)\in M$に対して
@@ -279,7 +282,7 @@
 \begin{dfn}[半単純代数]
 	任意の右（resp. 左）$A$加群が半単純であるとき，$F$代数$A$を右（resp. 左）半単純であるという．
 \end{dfn}
-後ほどわかるが，実は右半単純であることと左半単純であることは同値になる．よって単に半単純ということもある．体の類似物を定めることができたのでその性質を見ていこう．
+本節の最後でわかるが，実は右半単純であることと左半単純であることは同値になる．よって単に半単純ということもある．体の類似物を定めることができたのでその性質を見ていこう．
 \begin{prop}[半単純代数の特徴付け]\label{prop:semisimple}
 	$F$代数$A$について
 	\[
@@ -295,6 +298,37 @@
 	\]
 	とおくと，$M\cong \bigoplus_{M}A/\ker \gvph$である．命題\ref{prop:complete_summand}(2)よりしたがう．
 \end{proof}
+これを利用して，半単純代数の性質を見ておこう．
+\begin{prop}[半単純代数の性質]
+	$A,B$を半単純$F$代数とする．
+	\begin{enu}
+		\item $A\oplus B$は半単純$F$代数である．
+		\item 真の両側イデアル$I\supseteq F$に対して，$A/I$は半単純$F$代数である．
+	\end{enu}
+\end{prop}
+\begin{proof}
+	\begin{enu}
+		\item $C=A\oplus B$とおく．
+		\[
+			a'\cdot(a,b)=a'a, b'\cdot(a,b)=b'b
+		\]
+		によって$A,B$を右$C$加群としたものを$A_C,B_C$とかく．
+		このとき，
+		\[
+			C_C\cong A_C\oplus B_C
+		\]
+		であるので，命題\ref{prop:simple_char}より$A_C\oplus B_C$が半単純$C$加群であることを見れば良い．
+		$A_A$は半単純$A$加群ゆえ$M_i$を単純$A$部分加群として，
+		\[
+			A_A=\sum_i M_i
+		\]
+		と表せる．作用の定め方より，$M_i$は$A_C$の単純$C$部分加群でもある．よって$A_C$は半単純$C$加群．同様に$B_C$も半単純$C$加群であるので，命題\ref{prop:complete_summand}(2)より，それらの直和も半単純$C$加群である．
+		\item $A$は右半単純ゆえ命題\ref{prop:semisimple}より$A$は右$A$加群として半単純である．命題\ref{prop:complete_summand}(2)より$A/I$は右$A$加群として半単純である．$I$は両側イデアルゆえ$A$の右作用は$A/I$への作用を誘導し，これは$A/I$の右作用と一致する．よって$A/I$は右$A/I$加群として半単純であり，再び命題\ref{prop:semisimple}より$A/I$は右半単純$F$代数である．
+	\end{enu}
+\end{proof}
+% \begin{rmk}
+% 	半単純代数の部分代数は半単純代数になるとは限らない．
+% \end{rmk}
 ベクトル空間の場合，"素材"は1次元ベクトル空間の1種類のみだった．半単純代数上の加群の場合は実は1種類とは限らず，半単純代数のイデアルを用いて記述できる．
 \begin{dfn}[極小イデアル]
 	$F$代数$A$の右イデアルが右$A$加群として単純であるとき，極小右イデアルという．
@@ -310,6 +344,12 @@
 \begin{dfn}[単純代数]
 	$F$代数$A$が非自明な両側イデアルを持たないとき（i.e. 両側$A$加群として単純であるとき），単純であるという．
 \end{dfn}
+\begin{prop}
+	$F$代数$A$の両側イデアル$I\supseteq F$について，$A/I$は単純$F$代数である．
+\end{prop}
+\begin{proof}
+	代数の両側イデアルと剰余代数の両側イデアルの対応よりしたがう．
+\end{proof}
 単純代数の例を1つあげ，性質(甲)，(乙)を持つことを確認しよう．
 \begin{egbox}[可除代数は単純代数]\label{eg:div_is_simple}
 	$D$を有限次元可除$F$代数とする．
@@ -336,7 +376,7 @@
 \end{proof}
 別の単純代数の重要な例を見るために補題を用意する．
 \begin{lem}[行列環のイデアルはイデアルの行列環]\label{lem:matrix_ideal}
-	$R$を$F$代数，$r\in \bbZ_{>0}$とする．$\m_r(R)$の両側イデアルは
+	$R$を$F$代数，$r\in \bbN$とする．$\m_r(R)$の両側イデアルは
 	\[
 		\{\m_r(R)\text{の両側イデアル}\} = \{\m_r(I)\mid I\text{は}R\text{の両側イデアル}\}
 	\]
@@ -388,11 +428,10 @@
 	有限次元$F$代数$A$について以下は同値である．
 	\begin{enu}
 		\item\label{item:is_simple} $A$は単純$F$代数である．
-		\item\label{item:is_matrix} 有限次元可除$F$代数$D$と$r\in\bbZ_{>0}$が存在し$A\cong \m_r(D)$である．
+		\item\label{item:is_matrix} 有限次元可除$F$代数$D$と$r\in\bbN$が存在し$A\cong \m_r(D)$である．
 	\end{enu}
-	さらに$D$と$r$は$A$から（同型を除いて）一意的に定まる．
-\end{thm}
-\begin{prop}[有限次元単純代数の特徴付け]\label{prop:simple_char}
+	さらに$D$と$r$は$A$から（同型を除いて）一意的に定まる．$D$を$A$の可除部分，$r$を$A$の容量という．
+\end{thm}\begin{prop}[有限次元単純代数の特徴付け]\label{prop:simple_char}
 	有限次元$F$代数$A$について以下は同値である．
 	\begin{enu}
 		\item $A$は単純$F$代数である．
@@ -409,7 +448,7 @@
 	とする．まずこれが単射であることを示す．$\ker\gvph$は両側イデアルである．なぜなら$\gvph(a)=0$のとき$e_1a=\ldots=e_ra=0$ゆえ任意の$b\in A$で$gba=0$，つまり$\gvph(ba)=0$であり，また$g(ab)=0$であるから．さらに$1\notin\ker\gvph$ゆえ$\ker\gvph\neq A$である．これと$A$が単純であることから$\ker\gvph=0$ゆえ$\gvph$は単射である．したがって$A\cong gA\subseteq M^r$であり，これと$命題\ref{prop:complete_summand}$よりある$0<s\leq r$が存在し$A\cong M^s$となる．
 	\\
 	\underline{(\ref{item:is_sum_of_ideal}) $\implies$ (\ref{item:is_semisimple})}命題\ref{prop:semisimple},命題\ref{prop:minideal}よりしたがう．\\
-	\underline{(\ref{item:is_semisimple})$\implies$(\ref{item:is_matrix})} $A$を左$A$加群と見做したものを${}_AA$を書くことにする．注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$\End_A({}_AA)\cong A$であるので，$\End_A({}_AA)$が可除代数上の行列代数と同型であることを見る．$D=\End_A(M)$とおくと命題\ref{prop:irr_mod}(3)より$D$は可除$F$代数である．$A$の極小右イデアル$M$をとる．$A$は半単純であり$F$上有限次元ゆえ$A=M^r(r\in\bbN)$と書ける．よって命題\ref{prop:ds_and_end}より
+	\underline{(\ref{item:is_semisimple})$\implies$(\ref{item:is_matrix})} 注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$\End_A({}_AA)\cong A$であるので，$\End_A({}_AA)$が可除代数上の行列代数と同型であることを見る．$D=\End_A(M)$とおくと命題\ref{prop:irr_mod}(3)より$D$は可除$F$代数である．$A$の極小右イデアル$M$をとる．$A$は半単純であり$F$上有限次元ゆえ$A=M^r(r\in\bbN)$と書ける．よって命題\ref{prop:ds_and_end}より
 	\[
 		\End_A({}_AA)\cong \End_A(M^r)\cong \m_r(\End_A(M))=\m_r(D).
 	\]
@@ -422,7 +461,7 @@
 	である．さらにこれより$D^r\cong E^s\cong D^s$ゆえ$r=s$である．
 \end{proof}
 今後のために単純代数の性質をいくつか見よう．
-\begin{lem}[同次元なら同型]\label{prop:simple_lem}
+\begin{lem}[同次元なら同型]\label{lem:same_dim}
 	$A$を有限次元単純$F$代数とする．右$A$加群$M,N$について，
 	\[
 		\dim_F M = \dim_F N \implies M\cong N
@@ -445,7 +484,7 @@
 	\]
 	以上より$e\m_r(D)e\cong \m_s(D)$．
 \end{proof}
-\begin{lem}
+\begin{lem}[代数閉体上の単純代数は行列代数]\label{thm:alg_closure_sa_is_matrix}
 	$F$を代数閉体とする．
 	\begin{enumerate}
 		\item 有限次元可除$F$代数は$F$のみである．
@@ -481,7 +520,7 @@
 	\]
 	ゆえ，命題\ref{prop:complete_summand}(3)より$A$は右半単純$A$加群であり，命題\ref{prop:semisimple}より右半単純$F$代数である．
 	\\
-	\underline{(1)$\implies$(2)} $A$を右$A$加群とみなしたものを$A_A$と書くことにする．注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$A\cong \End_A(A_A)$であるため，$\End_A(A_A)$が単純代数の有限直和になっていることを示す．命題\ref{prop:semisimple}より$A_A$は半単純であるので，命題\ref{prop:complete_summand}(1)より単純右$A$加群$M_i$を用いて
+	\underline{(1)$\implies$(2)} 注意\ref{rmk:end}(\ref{item:end_of_it_is_itself})より$A\cong \End_A(A_A)$であるため，$\End_A(A_A)$が単純代数の有限直和になっていることを示す．命題\ref{prop:semisimple}より$A_A$は半単純であるので，命題\ref{prop:complete_summand}(1)より単純右$A$加群$M_i$を用いて
 	\[
 		A_A\cong\bigoplus_{i=1}^s {M_i}^{r_i}
 	\]
@@ -495,6 +534,7 @@
 	\]
 	である．ただし$D_i=\End_A(M_i)$であり，命題\ref{prop:irr_mod}(3)よりこれは可除$F$代数である．したがって定理\ref{thm:simple_struct}より各$\m_{r_i}(D_i)$は有限次元単純$F$代数であり，示された．
 \end{proof}
+この定理から右半単純性と左半単純性が同値であることがわかる．
 %%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
 %\input{thebibliography.tex}
 \end{document}
