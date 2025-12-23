@@ -1,0 +1,31 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/packages.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/theorem.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/operators_and_letters.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/layout_for_harumichi.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/spare.tex}
+%%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%style of numbers in emumerate environment%%%%%%%%%%%%
+\renewcommand{\labelenumi}{\fbox{\arabic{enumi}}} %大番号の付け方
+\renewcommand{\labelenumii}{(\arabic{enumii})} %中番号の付け方
+\renewcommand{\labelenumiii}{(\alph{enumiii})}%小番号の付け方
+%%%%%%%%%%%%%style of numbers in emumerate environment%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%title%%%%%%%%%%%%%%%%%%%%%%%%
+\title{}
+\author{山本晴道}
+\date{\today}
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%title%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
+\input{../18/18.tex}
+\input{../19/19.tex}
+%%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
+%\input{thebibliography.tex}
+\end{document}

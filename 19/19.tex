@@ -1,0 +1,476 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+%%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/packages.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/theorem_with_section_numbers.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/operators_and_letters.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/layout_for_harumichi.tex}
+\input{/Users/yamamotoharumichi/Library/TeXShop/Templates/preambles/spare.tex}
+%%%%%%%%%%%%%%%%%%%%%%%input%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%style of numbers in emumerate environment%%%%%%%%%%%%
+\renewcommand{\labelenumi}{(\arabic{enumi})} %大番号の付け方
+\renewcommand{\labelenumii}{(\roman{enumii})} %中番号の付け方
+\renewcommand{\labelenumiii}{(\alph{enumiii})}%小番号の付け方
+%%%%%%%%%%%%%style of numbers in emumerate environment%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
+\setcounter{section}{18}
+\section{中心的単純代数}
+\begin{set}
+  \begin{itemize}
+    \item $F,K$：体．
+    \item $A$：有限次元$F$代数．
+    \item $D$：有限次元可除$F$代数
+  \end{itemize}
+\end{set}
+\begin{rmk}
+  本節では$F$代数は\textbf{有限次元}であるとする．また以下の略称を使うことがある．
+  \begin{itemize}
+    \item SA:単純代数(\underline{s}imple \underline{a}lgebra)
+    \item CSA:中心的単純代数(\underline{c}entral \underline{s}imple \underline{a}lgebra)
+    \item SSA:半単純代数(\underline{s}emi\underline{s}imple \underline{a}lgebra)
+    \item DA:可除代数(\underline{d}ivision \underline{a}lgebra)
+    \item CDA:中心的可除代数(\underline{c}entral \underline{d}ivision \underline{a}lgebra)
+  \end{itemize}
+\end{rmk}
+この節では前節で見た単純代数に，さらに中心的であるという条件を加えた中心的単純代数について観察していく．まず基本的な概念を定める．
+\begin{dfn}[中心的単純代数]
+  \begin{enumerate}
+    \item （有限次元とは限らない）$F$代数$A$と部分集合$B\subseteq A$に対して
+          \[
+            \Zen_A(B)=\{a\in A\mid \forall b\in B, ab=ba\}
+          \]
+          を$A$での$B$の中心化代数という．これは部分代数となる．
+    \item $\Zen(A)=\Zen_A(A)$を$A$の中心という．
+    \item （有限次元とは限らない）$F$代数$A$について$\Zen(A)=F$であるとき，$A$は中心的であるという．
+  \end{enumerate}
+\end{dfn}
+まず中心の性質を見ていこう．
+\begin{prop}[中心の性質]\label{prop:prop_of_center}
+  $F$代数$A,A_\gl$について，以下が成り立つ．
+  \begin{enumerate}
+    \item $Z\left(\bigoplus_{\gl\in\gL}A_{\gl}\right)=\bigoplus_{\gl\in\gL}Z(A_{\gl}).$
+    \item $\Zen\left(\m_r(A)\right)=\Zen(A)I_r.$
+    \item $D$が可除環のとき$Z(D)$は体である．
+    \item $\Zen(A)$は$F$代数である．
+    \item $A$が単純代数なら$\Zen(A)$は$F$の有限次拡大体である．
+    \item $A$が半単純代数なら$\Zen(A)$は有限個の$F$の有限次拡大体の直和である．
+    \item 半単純代数$A$について$\Zen(A)$が体なら$A$は単純である．
+  \end{enumerate}
+\end{prop}
+\begin{proof}(1)-(4)簡単に示される．\\
+  (5)定理\ref{thm:simple_struct}と(2),(3)よりしたがう．\\
+  (6)(7)定理\ref{thm:artin_wedderburn}と(1),(5)よりしたがう．
+\end{proof}
+これから中心的単純代数の具体的な形がわかる．
+\begin{prop}[中心的単純代数の構造]
+  単純$F$代数$A$について，$A$が中心的であることと，$A$が可除部分が中心的可除$F$代数であることは同値である．つまり中心的単純$F$代数は$D$を可除$F$代数，$r\in\bbN$として$\m_r(D)$と同型である．
+\end{prop}
+\begin{proof}
+  命題\ref{prop:prop_of_center}(2)からしたがう．
+\end{proof}
+詳しく中心的単純代数を調べるにあたってテンソル積を用いるため，まずテンソル積について代数がどう振る舞うかを見ていく．まず代数のテンソル積を定める．
+\begin{dfn}[$F$代数のテンソル積]
+  （有限次元とは限らない）$F$代数$A,B$に対して,$F$ベクトル空間としてのテンソル積$A\otimes_F B$に積を
+  \[
+    (a_1\otimes b_1)(a_2\otimes b_2)=a_1a_2\otimes b_1b_2
+  \]
+  を$F$線形に拡張して定める．これはwell-definedであり，この積により$A\otimes B$は$F$代数となる．
+\end{dfn}
+\begin{proof}
+  積のwell-definednessを示す．双線型写像$\gPH:(A\otimes_F B)\times(A\otimes_F B)\to A\otimes_F B$であって
+  \[
+    \gPH(a_1\otimes b_1,a_2\otimes b_2)=a_1a_2\otimes b_1b_2
+  \]
+  なるものの存在を示せば良い．$a_2\in A,b_2\in B$を任意にとる．テンソル積の普遍性より，双線型写像
+  \[
+    A\times B\ni (a_1,b_1)\mapsto a_1a_2\otimes b_1b_2 \in A\otimes_F B
+  \]
+  から誘導される線型写像を$\gPS_{a_2,b_2}\in\hom_F(A\otimes_F B, A\otimes_F B)$とする．これにより
+  \[
+    \gPS:A\times B \to \hom_F(A\otimes_F B,A\otimes_F B)
+  \]
+  が定めるが，これは双線型写像である．よって$\gPS$が誘導する線型写像
+  \[
+    \gPH':A\otimes_F B\to\hom_F(A\otimes_F B,A\otimes_F B)
+  \]
+  が定まる．これが誘導する写像
+  \[
+    \gPH:(A\otimes_F B)\times(A\otimes_F B)\ni (x,y)\to\gPH'(y)(x)\in A\otimes_F B
+  \]
+  は双線型写像であり$\gPH(a_1\otimes b_1,a_2\otimes b_2)=a_1a_2\otimes b_1b_2$を満たす．
+\end{proof}
+$A\otimes B$について，性質を簡単に復習する．
+\begin{prop}[テンソル積の性質]
+  $A,B$を$F$代数とする．
+  \begin{enumerate}
+    \item
+          $\{e_1,\ldots,e_m\}$を$A$の基底，$\{f_1,\ldots,f_n\}$を$B$の基底とすると，
+          \[
+            \{e_i\otimes f_j\mid i=1,\ldots,m,\,j=1,\ldots,n\}
+          \]
+          は$A\otimes B$の基底である．特に$[A\otimes_F B:F]=[A:F][B:F]$である．
+    \item
+          \[
+            A\ni a\mapsto a\otimes 1_B\in A\otimes_F B,\quad B\ni b\mapsto 1_A\otimes b\in A\otimes_F B
+          \]
+          は単射である．これを通じて$A,B\subseteq A\otimes_F B$とみなす．
+    \item 任意の$a\in A,b\in B$について，$ab=ba$である．
+    \item $A\otimes_F B=\{\sum_{i=1}^n a_i\otimes b_i\mid a_i\in A,b_i\in B\}=AB$
+  \end{enumerate}
+\end{prop}
+これらの性質を使って逆に代数をテンソル積として実現できる．
+\begin{prop}[テンソル積への分解]\label{prop:tensor_product_decomposition}
+  $F$代数$C$とその部分代数$A,B$に対して以下が成立しているとする．
+  \begin{enumerate}
+    \item 任意の$a\in A,b\in B$に対して$ab=ba$．
+    \item $C=AB$．
+    \item $[C:F]=[A:F][B:F]$．
+  \end{enumerate}
+  このとき$C\cong A\otimes_F B$である．
+\end{prop}
+\begin{proof}
+  $A\times B\ni(a,b)\mapsto ab\in C$は双線型ゆえ線型写像$\gvph:A\otimes_F B\ni a\otimes b\mapsto ab\in C$を誘導する．(2)より$\gvph$は全射であるので(3)より$F$ベクトル空間の同型写像である．また(1)より
+  \begin{align*}
+    \gvph((a_1\otimes b_1)(a_2\otimes b_2)) & =\gvph(a_1a_2\otimes b_1b_2)                \\
+                                            & =a_1a_2b_1b_2                               \\
+                                            & =a_1b_1a_2b_2                               \\
+                                            & =\gvph(a_1\otimes b_1)\gvph(a_2\otimes b_2)
+  \end{align*}
+  であり積も保つ．よって$A\otimes_F B\cong C$である．
+\end{proof}
+この命題を使ってテンソル積の具体例を見よう．
+\begin{eg}\label{eg:coef_ext_of_matrix}
+  $\m_r(A)$とその部分代数$\m_r(F),AI_r$について考えると，命題\ref{prop:tensor_product_decomposition}より，$\m_r(A)\cong\m_r(F)\otimes_F A$である．
+\end{eg}
+\begin{eg}\label{eg:tensor_of_matrix}
+  $\m_{rs}(F)$の部分代数$A,B$を以下で定める．
+  \[
+    A=\left\{
+    \mqty(
+    x_{11}I_s&\cdots&x_{1r}I_s\\
+    \vdots&\ddots&\vdots\\
+    x_{r1}I_s&\cdots&x_{rr}I_s
+    )\,\Bigg|\, (x_{ij})_{ij}\in \m_r(F)\right\},\quad
+    B=\left\{
+    \mqty(
+    Y&\cdots&Y\\
+    \vdots&\ddots&\vdots\\
+    Y&\cdots&Y
+    )\,\Bigg|\, Y\in\m_s(F)\right\}.
+  \]
+  $A\cong \m_r(F),B\cong\m_s(F)$である．命題\ref{prop:tensor_product_decomposition}より$\m_{rs}(F)\cong\m_r(\m_s(F))\cong\m_r(F)\otimes_F\m_s(F)$である．なおこれにより$\m_r(F),\m_s(F)\subseteq \m_{rs}(F)$とみなしたときの$X=(x_{ij})\in\m_r(F)$と$Y\in\m_s(F)$の積
+  \[
+    XY
+    =\mqty(
+    x_{11}Y&\cdots&x_{1r}Y\\
+    \vdots&\ddots&\vdots\\
+    x_{r1}Y&\cdots&x_{rr}Y
+    )
+  \]
+  はクロネッカー積と呼ばれる．
+\end{eg}
+テンソル積により代数の係数体を拡大できる．
+\begin{prop}[係数拡大]
+  $A$を$F$代数，$K$を$F$の拡大体（共に有限次とは限らない）とする．$A\otimes_F K$は$K$代数となる，これを$F$から$K$への$A$の係数拡大と呼び$A_K$と書く．
+\end{prop}
+テンソル積について性質を見ていこう．
+\begin{lem}[テンソル積と中心]\label{lem:tensor_and_center}
+  （有限次元とは限らない）$F$代数$A,B$,拡大体$K$に対して以下が成立する．
+  \begin{enumerate}
+    \item $\Zen(A\otimes_F B)=\Zen(A)\otimes_F\Zen(B)$
+    \item $\Zen(A_K)=\Zen(A)_K$
+  \end{enumerate}
+\end{lem}
+\begin{proof}
+  \begin{enumerate}
+    \item ($\supseteq$)明らか．($\subseteq$)$\{x_i\}$を$A$の基底とする．$z=\sum_{i=1}^n x_i\otimes b_i\in A\otimes_F B$をとる．$z\in\Zen(A\otimes_F B)$ならば$1_A\otimes u$との可換性より$b_i\in \Zen(B)$ゆえ$\Zen(A\otimes_F B)\subseteq A\otimes_F\Zen(B)$．$\{y_i\}$を$\Zen(B)$の基底とする．$w=\sum_i^n a_i\otimes y_i\in A\otimes \Zen(B)$をとる．$w\in\Zen(A\otimes_F B)$ならば$v\otimes 1_B$との可換性より$a_i\in \Zen(A)$．したがって$\Zen(A\otimes_F B)\subseteq\Zen(A)\otimes_F\Zen(B)$．
+    \item (1)よりしたがう．
+  \end{enumerate}
+\end{proof}
+では中心的単純代数の性質を調べていこう．
+\begin{lem}[CSAとのテンソル積の両側イデアル]\label{lem:csa_tensor_ideal}
+  $B$を中心的単純$F$代数，$A$を$F$代数（共に有限次元とは限らない）とする．このとき
+  \[
+    (A\otimes_F Bの両側イデアル全体)=\{I\otimes B\mid I\text{は}A\text{の両側イデアル}\}
+  \]
+  である．
+\end{lem}
+\begin{proof}
+  ($\supseteq$)明らか．\\
+  ($\subseteq$)$A\otimes_F B$の両側イデアル$J\neq 0$をとる．$I=J\cap A$とおく．$I$は$A$の両側イデアルであり$J\supseteq I\otimes B$である．$I=A$なら証明は終了している．$I\neq A$のときに$J\setminus I\otimes B=\varnothing$を背理法で示す．\\
+  $I$の基底$\{x_\gn\}_{\gn\in N}$を延長して$A$の基底$\{x_\gl\}_{\gl\in\gL}$をとる．$\gL=M\sqcup N$とおく．$N\neq\varnothing$である．ある$z\in J\setminus I\otimes B$を構成し$z\in I$を示すことで矛盾させる．$I\otimes B$の元で調整することで，$w\in J\setminus I\otimes B$を$w=\sum_{\gn\in N}x_\gn b_\gn$となるようにとれる．$N_w=\{\gn\in N\mid b_\gn\neq 0\}$は有限集合ゆえ，$\# N_w$が最小になるように$w$をとれる．$\gk\in N$をとる．
+  \[
+    B_\gk=\left\{c_\gk\in B\,\Bigg|\, \sum_{\gn\in N_w}x_\gn c_\gn\in J\right\}
+  \]
+  とおくと，$B_\gk$は$B$の両側イデアルであり$B$が単純ゆえ$B_\gk=B$．よって
+  \[
+    z=\sum_{\gn\in N_w}x_\gn c_\gn\quad(c_\gk=1)
+  \]
+  なる$z\in J\setminus I\otimes B$をとれる．任意の$d\in B$について
+  \[
+    dz-zd=\sum_{\gn\in N_w}x_\gn(dc_\gn-c_\gn d)
+  \]
+  であり$x_\gk$の係数は0．$\# N_w$の最小性から$dz-zd=0$，すなわち任意の$\gn\in N_w$で$dc_\gn=c_\gn d$．$d\in B$は任意だったので$c_\gn\in \Zen(B)=F$．よって$z\in I$であるがこれは矛盾である．
+\end{proof}
+中心的単純代数はテンソル積について良い振る舞いをする．
+\begin{thm}[CSAとのテンソル積はSA,SSA,CSAを保存]
+  \label{thm:csa_tensor_preserves_sa_ssa_csa}
+  中心的単純$F$代数$B$に対して以下が成り立つ．
+  \begin{enumerate}
+    \item （有限次元とは限らない）$A$が単純代数なら$A\otimes_F B$は単純代数．
+    \item $A$が半単純代数なら$A\otimes_F B$は半単純代数．
+    \item （有限次元とは限らない）$A$が中心的単純$F$代数なら$A\otimes_F B$は中心的単純$F$代数．
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  \begin{enumerate}
+    \item 補題\ref{lem:csa_tensor_ideal}よりしたがう．
+    \item 定理\ref{thm:artin_wedderburn}より，単純代数$A_i$が存在して$A=A_1\oplus\cdots\oplus A_s$となる．$A\otimes_F B\cong(A\otimes_F B)\oplus\cdots\oplus(A_s\otimes_F B)$であることと(1)よりしたがう．
+    \item (1)と補題\ref{lem:tensor_and_center}よりしたがう．
+  \end{enumerate}
+\end{proof}
+\begin{thm}[係数拡大によるCSA判定]\label{thm:csa_judgement}
+  \begin{enumerate}
+    \item $B$を$F$代数，$K$を$F$の拡大体（共に有限次元とは限らない）とする．このとき
+          \[
+            B\text{が中心的単純}F\text{代数}\iff B_K\text{が中心的単純}K\text{代数}
+          \]
+          が成り立つ．
+    \item $\overline{F}$を$F$の代数閉包とする．このとき
+          \[
+            A\text{が中心的単純}F\text{代数である}\iff A\otimes_F \overline{F}\cong \m_n(\overline{F})\quad (n\in\bbN)
+          \]
+          が成り立つ．
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  \begin{enumerate}
+    \item 補題\ref{lem:tensor_and_center}(2)より$\Zen(B)=F\iff \Zen(B_K)=K$である．よって単純性について示せばよい．\\
+          \underline{$\implies$} 定理\ref{thm:csa_tensor_preserves_sa_ssa_csa}(1)よりしたがう．\\
+          \underline{$\impliedby$} $I$を$B$の両側イデアルとする．$I\otimes K$は$B_K$の両側イデアルゆえ，$I\otimes K=0,B_K$である．よって$I=0,B$であり，$B$は単純である．
+    \item (1)と定理\ref{thm:alg_closure_sa_is_matrix}からしたがう．
+  \end{enumerate}
+\end{proof}
+\begin{thm}[CSAの次元は平方数]
+  $A$が中心的単純$F$代数ならば$[A:F]$は平方数である．
+\end{thm}
+\begin{proof}
+  定理\ref{thm:csa_judgement}(2)よりしたがう．
+\end{proof}
+さらに中心的単純代数の性質を調べていくために反転代数を導入しよう．行列の転置や，四元数代数の共役は，加法やスカラー倍は保存するが
+\[
+  \tp(AB)=\tp B \tp A,\quad \overline{xy}=\overline{y}\,\overline{x}
+\]
+と積は入れ替えてしまう．反転代数はこのような写像を扱う概念である．今回は加群の右と左を入れ替えるために反転代数を用いる．
+\begin{dfn}[反転代数]\label{dfn:reciprocal}
+  \begin{enumerate}
+    \item $A,B$を環とする．$\ga:A\to B$が加法と$1$を保ち，任意の$x,y\in A$に対して
+          \[
+            (xy)^\ga=y^\ga x^\ga
+          \]
+          が成り立つとき，$\ga$は反準同型であるという．
+    \item 反準同型$\ga:A\to B$が反準同型であるような逆写像$\ga^{-1}$を持つとき，反同型であるという．特に$A=B$であり$\ga^2=1$であるような反同型を対合という．
+    \item $F$代数の間の写像が，環の間の写像として反準同型，反同型であり$F$線形であるとき，$F$反準同型，$F$反同型，または単に反準同型，反同型という．
+    \item 環$(A,1,+,\cdot)$に対して，$(A,1,+,\cdot_{\op})$を
+          \[
+            x\cdot_{\op} y = x\cdot y
+          \]
+          で定めると環となる．これを$A$の反転環といい，$A^{\op}$で表す．また反同型$A\ni x\mapsto x\in A^{\op}$を$\op_A$，または単に$\op$とかく．
+    \item $F$代数$A$の反転環$A^{\op}$は$F$代数となる．これを反転代数と呼ぶ．$op$は$F$反同型である．
+  \end{enumerate}
+\end{dfn}
+\begin{eg}
+  $\m_r(F)\ni x\mapsto \tp x\in\m_r(F)$は反同型である．
+\end{eg}
+\begin{prop}[反転代数の普遍性]
+  \begin{enumerate}
+    \item 反準同型二つの合成は準同型である．
+    \item 反同型二つの合成は同型である．
+    \item 任意の反準同型$\gvph:A\to B$に対して$\gps:A^{\op}\to B$が一意的に存在し$\gps\circ\op=\gvph$が成り立つ．
+          \[
+            \begin{tikzcd}
+              A \arrow[r, "\forall\gvph"] \arrow[d, "\op"'] & B \\
+              A^{\op} \arrow[ur, "\exists!\gps"', dashed]
+            \end{tikzcd}
+          \]
+  \end{enumerate}
+\end{prop}\begin{prop}[自己準同型の反転]\label{prop:op_induces_hom}
+  $A,B$を環または$F$代数とし
+  \[
+    F:\hom(A,B)\ni \ga\mapsto \op_{B} \circ \ga \circ \op_{A^{\op}} \in \hom(A^{\op},B^{\op})
+  \]
+  とおく．
+  \begin{enumerate}
+    \item $F$は全単射であるである．
+    \item $A=B$のとき，$F:\End(A)\to\End(A^{\op})$は同型である．
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item まずwell-defined性を示す．$\ga\in\hom(A,B),x,y\in A$に対して
+          \begin{align*}
+            F(\ga)(x^{\op}y^{\op}) & =\op(\ga(\op((yx)^{\op})))                    \\
+                                   & =\op(\ga(yx))                                 \\
+                                   & =\op(\ga(y)\ga(x))                            \\
+                                   & =\ga(x)^{\op}\ga(y)^{\op}                     \\
+                                   & =\op(\ga(\op(x^{\op})))\op(\ga(\op(y^{\op}))) \\
+                                   & =F(\ga)(x^{\op})F(\ga)(y^{\op})
+          \end{align*}
+          より$F(\ga)$は積を保つ．他の演算についても保たれるため$F(\ga)\in\hom(A^{\op},B^{\op})$である．$A$と$A^{\op}$，$B$と$B^{\op}$を入れ替えることで$F$の逆写像を得られる．よって$F$は全単射である．
+    \item $\ga,\gb\in\hom(A,B)$について，
+          \[
+            F(\ga)\circ F(\gb)=(\op\circ\ga\circ\op)\circ(\op\circ\gb\circ\op)
+            =\op\circ(\ga\circ\gb)\circ\op
+            =F(\ga\circ\gb)
+          \]
+          よりしたがう．
+  \end{enumerate}
+\end{proof}
+\begin{prop}[作用の反転]\label{prop:opposite_action}
+  $A$を環，または$F$代数，$M$を右$A$加群とする．$A^{\op}$の$M$への作用を
+  \[
+    a^{\op} m=ma
+  \]
+  により定めると，$M$は左$A^{\op}$加群となる．これは左右逆でも成り立つ．
+\end{prop}
+\begin{proof}
+  $A$の作用を定める準同型が$\gvph:A\to\End(M)$であるとき，主張の$A^{\op}$の作用は準同型$\op\circ \gvph\circ\op:A^{\op}\to\End(M)^{\op}$によって定められる．よってしたがう．
+\end{proof}
+作用の反転を使って両側加群を右加群に直すことができる．
+\begin{dfn}[両側加群]
+  アーベル群$(M,+)$が左$A$加群でも右$B$加群でもあり，$a\in A,b\in B,m\in M$に対して
+  \[
+    (am)b=a(mb)
+  \]
+  であるとき，$M$を両側$(A,B)$加群という．両側$(A,B)$加群$M$を${}_AM_B$ともかく．
+\end{dfn}\begin{prop}[両側加群を右加群に]\label{prop:bimod_to_mod}
+  $A,B$を$F$代数，$M$を$(A,B)$両側加群とする．$A^{\op}\otimes_F B$の$M$への作用を
+  \[
+    m\left(\sum_{i=1}^n {a_i}^{\op}\otimes {b_i}\right)=\sum_{i=1}^n a_imb_i
+  \]
+  により定めると，この作用はwell-definedであり，$M$は右$A\otimes_F B$加群となる．
+\end{prop}
+\begin{proof}
+  $\gvph:A\to\End_\bbZ(M),\gps:B\to\End_\bbZ(M)$を$A,B$の作用を与える準同型とする．双線型写像
+  \[
+    A^{\op}\times B\ni (a^{\op},b)\to \gvph(a)\circ\gps(b)(=\gps(b)\circ\gvph(a))\in\End_\bbZ(M)
+  \]
+  が誘導する準同型$A^{\op}\otimes_F B\to \End_\bbZ(M)$が主張の作用を与える．
+\end{proof}
+では反転代数を使って中心的単純代数の性質を調べていこう．まず反転とのテンソル積で可除部分を自明にすることができる．
+\begin{thm}[CSAと反転代数のテンソル積は可除部分が自明]
+  $A$を中心的単純$F$代数とする．このとき$A^{\op}\otimes_F A\cong \m_r(F)\,(r=[A:F])$である．
+\end{thm}
+\begin{proof}
+  両側$(A,A)$加群$A$を考えることで右$A^{\op}\otimes_F A$加群$A$を得る．定理\ref{thm:csa_tensor_preserves_sa_ssa_csa}より$A^{\op}\otimes_F A$は中心的単純$F$代数である．$A^{\op}\otimes_F A$の$A$への作用は$F$準同型$\gvph:A^{\op}\otimes_F A\to \End_F(A)$を導く．単純性と$\im\gvph\neq 0$より$\ker\gvph=0$である．これと$[A^{\op}\otimes_F A:F]=r^2=[\End_F(A):F]$より$\gvph$は同型である．よって$A^{\op}\otimes_F A\cong\End_F(A)=\m_r(F)$である．
+\end{proof}
+次に中心的単純台数の単純な部分代数について見ていく．単純部分代数たちは$A^\times$の共役作用と，中心化$\Zen$を通じて互いに関係しあっている．まず共役作用を通じた関係を見よう．
+\begin{thm}[CSAのSA部分代数は共役]\label{thm:sub_sa_are_conj}
+  $A$を中心的単純$F$代数，$B$を単純$F$代数とする．単射準同型$\gs,\gt:B\to A$に対してある$\gg\in A^\times$が存在し，任意の$b\in B$に対して
+  \[
+    b^\gt = \gg b^\gs \gg^{-1}
+  \]
+  が成り立つ．
+\end{thm}
+\begin{proof}
+  $B$からの作用$ba=b^{\gs} a$により$A_A$を左$B$加群とみなすと，$A$は両側$(B,A)$加群となる．命題\ref{prop:bimod_to_mod}より$A$は右$B^{\op}\otimes_F A$加群となる．これを$A_{\gs}$とかく．同様に$A_{\gt}$を定める．定理\ref{thm:csa_tensor_preserves_sa_ssa_csa}(1)より$B^{\op}\otimes_F A$は単純であるので補題\ref{lem:same_dim}より同型$f:A_{\gs}\to A_{\gt}$が存在する．$\gg=f(1_A)$とおくと$f(a)=\gg a$であることに注意すれば，任意の$b\in B$に対して
+  \[
+    \gg b^\gs = f(b^\gs) = f(1_A(b^\gs\otimes 1_A))=f(1_A)(b^\gt\otimes 1_A)=b^\gt\gg
+  \]
+  より$b^\gt=\gg b^\gs \gg^{-1}$が成り立つ．$f$が同型であるため$A=f(A)=\gg A$であるため$\gg\in A^\times$である．
+\end{proof}
+\begin{cor}[CSAの自己同型は内部自己同型]
+  $A$を中心的単純$F$代数，$\gs:A\to A$を自己同型とする．このときある$\gg\in A^\times$が存在し，任意の$a\in A$で
+  \[
+    a^\gs = \gg a\gg^{-1}
+  \]
+  が成り立つ．
+\end{cor}
+\begin{proof}
+  定理\ref{thm:sub_sa_are_conj}よりしたがう．
+\end{proof}
+続いて中心化$\Zen$を通じた関係を見よう．単純部分代数は双子のように対になっており中心化$\Zen$で写りあう．
+\begin{lem}[SA上有限生成加群の自己同型群]\label{lem:fg_sa_mod}
+  $A$を可除部分が$D$，容量が$r$の単純$F$代数とする．有限生成右$A$加群$W$について，$\End_A(W)$は$D$を可除部分とする単純$F$代数であり，
+  \[
+    \quad [W:F]^2=[A:F][\End_A(W):F]
+  \]
+  が成り立つ．
+\end{lem}
+\begin{proof}
+  $M=D^r$とおくと，$M$は例\ref{eg:d^r_is_irr}より単純右$A$加群である．命題\ref{prop:simple_char}よりある$s\in\bbN$があり$W\cong M^s$が成り立つ．よって命題\ref{prop:ds_and_end},例\ref{eg:div_ds}より
+  \[
+    \End_A(W)\cong \m_s(\End_A(V))\cong\m_s(D).
+  \]
+  さらに
+  \[
+    [W:F]=[D:F]rs,\quad [A:F]=[D:F]r^2,\quad [\End_A(W):F]=[D:F]s^2
+  \]
+  ゆえ$[W:F]^2=[A:F][\End_A(W):F]$が成り立つ．
+\end{proof}
+\begin{thm}[CSAでのSAの中心化代数]
+  $A$を中心的単純$F$代数，$B$をその単純$F$部分代数，$C=\Zen_A(B)$とする．このとき以下が成り立つ．
+  \begin{enumerate}
+    \item $C$は単純$F$代数．
+    \item $[A:F]=[B:F][C:F]$
+    \item $B^{\op}\otimes_F A$と$C$の可除部分は等しい．
+    \item $\Zen_A(C)=B$．
+  \end{enumerate}
+\end{thm}
+\begin{proof}
+  $A$の可除部分を$D$，容量を$r\in\bbN$とおく．このとき$M=D^r$とおくと，例\ref{eg:div_ds}より$D$の作用と$A$の作用は可換ゆえ，$M$は両側$(D,B)$加群である．命題\ref{prop:bimod_to_mod}（の左右逆）を用いて$M$は左$D\otimes_FB^{\op}$加群になる．このとき$C=\End_{D\otimes_FB^{\op}}(M)$である．なぜなら$\End_{D\otimes_FB^{\op}}(M)\subseteq\End_{D}(M)=A$であり右作用$M\rightaction A$が忠実ゆえ，$a\in A$について
+  \begin{align*}
+    a\in\End_{D\otimes_FB^{\op}}(M) & \iff \forall d\in D, \forall b\in B,\forall m\in M, (dmb)a=d(ma)b \\
+                                    & \iff \forall b\in B, ba=ab
+  \end{align*}
+  であるから．定理\ref{thm:csa_tensor_preserves_sa_ssa_csa}より$D\otimes_F B^{\op}$は単純ゆえ，補題\ref{lem:fg_sa_mod}より$C=\End_{D\otimes_FB^{\op}}(M)$は単純である．よって(1)がしたがう．また
+  \begin{align*}
+    [A:F] & =[D:F]r^2                                                    \\
+          & =[M:F]^2/[D:F]                                               \\
+          & =[D\otimes_F B^{\op}:F][\End_{D\otimes_FB^{\op}}(M):F]/[D:F] \\
+          & =[D:F][B:F][C:F]/[D:F]                                       \\
+          & =[B:F][C:F]
+  \end{align*}
+  より(2)が成り立つ．さらに$C$の可除部分は$D\otimes_F B^{\op}$の可除部分と一致する．例\ref{eg:coef_ext_of_matrix}より
+  \[
+    A\otimes_F B^{\op}\cong \m_r(F)\otimes_F D\otimes_F B^{\op}\cong \m_r(D\otimes_F B^{\op})
+  \]
+  でありこれと例\ref{eg:tensor_of_matrix}より，$D\otimes_F B^{\op}$と$A\otimes_F B^{\op}$の可除部分は一致する．よって(3)がしたがう．(2)を$C$に対して用いると$[A:F]=[C:F][\Zen_A(C):F]$である．これと(2)より$[B:F]=[\Zen_A(C):F]$であり，$B\subseteq \Zen_A(C)$ゆえ(4)の$\Zen_A(C)=B$が成り立つ．
+\end{proof}
+\begin{thm}
+
+\end{thm}
+\begin{lem}[CDAは$F$の分離拡大を含む]
+
+\end{lem}
+\begin{thm}[CDAが含む分離拡大の次数]
+
+\end{thm}
+\begin{dfn}[表現]
+
+\end{dfn}
+\begin{thm}[SA,SSAの表現の同値性]
+
+\end{thm}
+\begin{thm}[中心分離SAの正則表現の分解]
+
+\end{thm}
+\begin{dfn}[被約ノルム，被約トレース]
+
+\end{dfn}
+\begin{lem}[中心分離SAの係数拡大はSSA]
+
+\end{lem}
+\begin{thm}[中心分離SAの被約トレースは非退化]
+
+\end{thm}
+\begin{thm}[中心分離で係数拡大してSSAならSA]
+
+\end{thm}
+%%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
+%\input{thebibliography.tex}
+\end{document}
