@@ -52,9 +52,9 @@
 \begin{prop}[中心の性質]\label{prop:prop_of_center}
   $F$代数$A,A_\gl$について，以下が成り立つ．
   \begin{enumerate}
-    \item $Z\left(\bigoplus_{\gl\in\gL}A_{\gl}\right)=\bigoplus_{\gl\in\gL}Z(A_{\gl}).$
+    \item $\Zen\left(\bigoplus_{\gl\in\gL}A_{\gl}\right)=\bigoplus_{\gl\in\gL}\Zen(A_{\gl}).$
     \item $\Zen\left(\m_r(A)\right)=\Zen(A)I_r.$
-    \item $D$が可除環のとき$Z(D)$は体である．
+    \item $D$が可除環のとき$\Zen(D)$は体である．
     \item $\Zen(A)$は$F$代数である．
     \item $A$が単純代数なら$\Zen(A)$は$F$の有限次拡大体である．
     \item $A$が半単純代数なら$\Zen(A)$は有限個の$F$の有限次拡大体の直和である．
@@ -72,13 +72,14 @@
 \begin{proof}
   命題\ref{prop:prop_of_center}(2)からしたがう．
 \end{proof}
+\subsection{代数のテンソル積}
 詳しく中心的単純代数を調べるにあたってテンソル積を用いるため，まずテンソル積について代数がどう振る舞うかを見ていく．まず代数のテンソル積を定める．
 \begin{dfn}[$F$代数のテンソル積]
   （有限次元とは限らない）$F$代数$A,B$に対して,$F$ベクトル空間としてのテンソル積$A\otimes_F B$に積を
   \[
     (a_1\otimes b_1)(a_2\otimes b_2)=a_1a_2\otimes b_1b_2
   \]
-  を$F$線形に拡張して定める．これはwell-definedであり，この積により$A\otimes B$は$F$代数となる．
+  が第一，二引数に対して$F$線形になるように拡張して定める．これはwell-definedであり，この積により$A\otimes B$は$F$代数となる．
 \end{dfn}
 \begin{proof}
   積のwell-definednessを示す．双線型写像$\gPH:(A\otimes_F B)\times(A\otimes_F B)\to A\otimes_F B$であって
@@ -144,7 +145,11 @@ $A\otimes B$について，性質を簡単に復習する．
 \end{proof}
 この命題を使ってテンソル積の具体例を見よう．
 \begin{eg}\label{eg:coef_ext_of_matrix}
-  $\m_r(A)$とその部分代数$\m_r(F),AI_r$について考えると，命題\ref{prop:tensor_product_decomposition}より，$\m_r(A)\cong\m_r(F)\otimes_F A$である．
+  $\m_r(A)$とその部分代数$\m_r(F),AI_r$について考えると，命題\ref{prop:tensor_product_decomposition}より，$\m_r(A)\cong\m_r(F)\otimes_F A$である．さらにこれより$F$代数$A,B$に対して
+  \[
+    \m_r(A)\otimes_F B\cong\m_r(F)\otimes_F A\otimes_F B\cong \m_r(A\otimes_F B)
+  \]
+  である．
 \end{eg}
 \begin{eg}\label{eg:tensor_of_matrix}
   $\m_{rs}(F)$の部分代数$A,B$を以下で定める．
@@ -173,6 +178,32 @@ $A\otimes B$について，性質を簡単に復習する．
   \]
   はクロネッカー積と呼ばれる．
 \end{eg}
+\begin{prop}[両側代数としてのテンソル積]\label{prop:tensor_as_two_sided_algebra}
+  $K,L$を体とする．$K$代数かつ$L$代数であり，$K$と$L$の作用が可換であるような代数を$(K,L)$両側代数と呼ぶことにする．$A$を$K$代数，$B$を$(K,L)$両側代数，$C$を$L$代数とする．
+  \begin{enumerate}
+    \item $A\otimes_K B$は$(K,L)$両側代数である．
+    \item $B\otimes_L C$は$(K,L)$両側代数である．
+    \item $(K,L)$両側代数として（つまり$K$代数としても$L$代数としても）以下が成り立つ．
+          \[
+            (A\otimes_K B)\otimes_L C\cong A\otimes_K (B\otimes_L C)
+          \]
+  \end{enumerate}
+\end{prop}
+\begin{proof}
+  \begin{enumerate}
+    \item $A\otimes_K B$は$K$代数であり，$l\in L$の作用を$1_A\otimes l$の積で定めると，これは$L$代数となる．また$K$と$L$の作用は可換である．
+    \item (1)と同様に示される．
+    \item $c\in C$を固定する．
+          \[
+            A\times B\ni (a,b)\mapsto a\otimes (b\otimes c)\in A\otimes_K (B\otimes_L C)
+          \]
+          は$K$双線型ゆえ，$K$線型写像$\gvph_c:A\otimes_K B\to A\otimes_K (B\otimes_L C)$を誘導する．これは
+          \[
+            \gvph:(A\otimes_K B)\times C \ni (x,c)\mapsto \gvph_c(x)\in A\otimes_K (B\otimes_L C)
+          \]
+          を導くがこれは$L$双線型である．したがって$L$線型写像$\gPH:(A\otimes_K B)\otimes_L C\to A\otimes_K (B\otimes_L C)$を誘導する．これは$K$線型でもある．逆写像も同様にして得られるため，これは同型である．
+  \end{enumerate}
+\end{proof}
 テンソル積により代数の係数体を拡大できる．
 \begin{prop}[係数拡大]
   $A$を$F$代数，$K$を$F$の拡大体（共に有限次とは限らない）とする．$A\otimes_F K$は$K$代数となる，これを$F$から$K$への$A$の係数拡大と呼び$A_K$と書く．
@@ -191,6 +222,7 @@ $A\otimes B$について，性質を簡単に復習する．
     \item (1)よりしたがう．
   \end{enumerate}
 \end{proof}
+\subsection{中心的単純代数の性質その1}
 では中心的単純代数の性質を調べていこう．
 \begin{lem}[CSAとのテンソル積の両側イデアル]\label{lem:csa_tensor_ideal}
   $B$を中心的単純$F$代数，$A$を$F$代数（共に有限次元とは限らない）とする．このとき
@@ -261,7 +293,8 @@ $A\otimes B$について，性質を簡単に復習する．
 \begin{proof}
   定理\ref{thm:csa_judgement}(2)より$[A:F]$が平方数であることがしたがう．$A$の容量を$r$とすると$A\cong \m_r(D)$より$[A:F]=[D:F]r^2$であるため$[D:F]$も平方数である．
 \end{proof}
-さらに中心的単純代数の性質を調べていくために反転代数を導入しよう．行列の転置や，四元数代数の共役は，加法やスカラー倍は保存するが
+\subsection{反転代数}
+さらに中心的単純代数の性質を調べていくために反転代数を導入しよう．行列の転置や，次章で扱うハミルトンの四元数代数の共役は，加法やスカラー倍は保存するが
 \[
   \tp(AB)=\tp B \tp A,\quad \overline{xy}=\overline{y}\,\overline{x}
 \]
@@ -280,7 +313,7 @@ $A\otimes B$について，性質を簡単に復習する．
             x\cdot_{\op} y = x\cdot y
           \]
           で定めると環となる．これを$A$の反転環といい，$A^{\op}$で表す．また反同型$A\ni x\mapsto x\in A^{\op}$を$\op_A$，または単に$\op$とかく．
-    \item $F$代数$A$の反転環$A^{\op}$は$F$代数となる．これを反転代数と呼ぶ．$op$は$F$反同型である．
+    \item $F$代数$A$の反転環$A^{\op}$は$F$代数となる．これを反転代数と呼ぶ．$\op$は$F$反同型である．
   \end{enumerate}
 \end{dfn}
 \begin{eg}
@@ -361,6 +394,7 @@ $A\otimes B$について，性質を簡単に復習する．
   \]
   が誘導する準同型$A^{\op}\otimes_F B\to \End_\bbZ(M)$が主張の作用を与える．
 \end{proof}
+\subsection{中心的単純代数の性質その2}
 では反転代数を使って中心的単純代数の性質を調べていこう．まず反転とのテンソル積で可除部分を自明にすることができる．
 \begin{thm}[CSAと反転代数のテンソル積は可除部分が自明]
   $A$を中心的単純$F$代数とする．このとき$A^{\op}\otimes_F A\cong \m_r(F)\,(r=[A:F])$である．
@@ -480,7 +514,7 @@ $A\otimes B$について，性質を簡単に復習する．
   \]
   である．よって$\gs|_{F[c]}$は$F[c]$の非自明な$F$同型である．
 \end{proof}
-\begin{thm}[CDAは指数次分離拡大を含む]
+\begin{thm}[CDAは指数次分離拡大を含む]\label{thm:cda_contains_sep_ex_of_degree_index}
   $D$を中心的可除$F$代数とする．$D$は$[D:F]=[K:F]^2$，すなわち拡大次数が$D$の指数となる$F$の分離拡大体$K$を含む．
 \end{thm}
 \begin{proof}
@@ -490,27 +524,233 @@ $A\otimes B$について，性質を簡単に復習する．
   \]
   ゆえ$\Zen_D(K)$は可除代数であるから．補題\ref{lem:cda_contains_sep_ex}より$\Zen_D(K)$は$K$の真の分離拡大$L$を含む．$[L:F]>[K:F]$であるので$K$の取り方に矛盾する．
 \end{proof}
+\subsection{被約トレース・被約ノルム}
+$F$代数に対してトレースやノルムといった概念を定めよう．まずトレースとノルムを定義する際に用いる表現を導入する．
 \begin{dfn}[表現]
-
+  \begin{enumerate}
+    \item $F$代数の$A$の次数$r$の表現とは，$F$準同型$\gs:A\to\m_r(F)$のことである．
+    \item $A$の表現$\gs$が忠実であるとは，$\gs$が単射であることである．
+    \item $A$の表現$\gs,\gt$が同値であるとは，次数が等しく（$r$とおく），ある$\gg\in\GL_r(F)$が存在し，任意の$a\in A$に対して
+          \[
+            a^\gt = \gg a^\gs \gg^{-1}
+          \]
+          が成り立つことであり，$\gt\sim\gs$と書く．
+    \item $A$の右正則表現$\gr$とは，$A$から右$A$加群$A_A$への作用を与える準同型$\gr:A\to\End_F(A_A)\cong \m_{[A:F]}(F)$のことである．これは同値を除いて定まる．
+    \item 次数が等しい$F$代数$A$の表現$\gs,\gt$について，その直和$\gs\oplus\gt$とは
+          \[
+            a^{\gs\oplus\gt}=\mqty(a^\gs &O\\O& a^\gt)
+          \]
+          により定まる表現のことである．
+  \end{enumerate}
 \end{dfn}
-\begin{thm}[SA,SSAの表現の同値性]
-
+$A$が$F$ベクトル空間$V$に作用している時，$V$の基底をとるごとに次数$\dim V$の表現が定まる．このときの基底の取り方の違いを無視する同一視を行うのが表現の同値である．逆に表現も$F$ベクトル空間への作用を誘導するため加群を誘導する．表現の同値性は加群を使うと以下のように言い換えられる．
+\begin{prop}[同値な表現の加群は同型]\label{prop:equiv_and_iso}
+  $A$を$F$代数，$\gs,\gt$を$A$の次数$r$の表現とする．$\gs,\gt$が誘導する作用により$V=F^r$を$A$加群とみなしたものをそれぞれ$V_{\gs},V_{\gt}$とおく．このとき
+  \[
+    \gs\sim\gt \iff V_{\gs}\cong V_{\gt}
+  \]
+  である．
+\end{prop}
+\begin{proof}
+  $V_\gs\cong V_\gt$が同型であるとは$\gg\in \GL_r(F)$が存在し，任意の$a\in A,v\in F^r$に対して
+  \[
+    (v a^{\gt})\gg=(v\gg)a^{\gs}
+  \]
+  が成り立つことである．$\m_r(F)$は$F^r$に忠実に作用するので，これは
+  \[
+    a^{\gt} \gg= \gg a^\gs
+  \]
+  と同値である．
+\end{proof}
+有限次拡大体$K/F$の場合はトレース，ノルムを右正則表現$\gr$を用いて
+\[
+  \tr_{K/F}(a)=\tr(a^\gr),\quad \n_{K/F}(a)=\det(a^\gr)
+\]
+と定めた．つまり各元をスカラー倍により線型写像とみなし、その線型写像のトレースやノルムをその元のトレース、ノルムにするということである．これと同じように$F$代数$A$にトレース、ノルムを定めることができる．
+\begin{dfn}[トレース・ノルム]
+  $A$を$F$代数とする．$A$の右正則表現$\gr$を用いて
+  \[
+    \tr_{A/F}(a)=\tr(a^\gr),\quad \n_{A/F}(a)=\det(a^\gr).
+  \]
+  で定められる写像$\tr_{A/F}:A\to F,\n_{A/F}:A\to F$をそれぞれ$A$のトレース，ノルムという．
+\end{dfn}
+しかし場合によってはこのトレース，ノルムが与える情報はある意味で少なくなっている．例を見てみよう．
+\begin{eg}\label{eg:tr_and_n_of_matrix}
+  $A=\m_n(F)$のとき，標準的な基底$\{E_{1,1},\ldots,E_{1,n},\ldots,E_{n,1},\ldots,E_{n,n}\}$（$E_{i,j}$は$(i,j)$成分が1で他は0の$n\times n$行列）に関する$a\in A$の右正則表現は
+  \[
+    a^\gr=\mqty(
+    a&&\\
+    &\ddots&\\
+    &&a\\
+    )
+  \]
+  であるので，
+  \begin{align*}
+    \tr_{A/F}(a) & =\tr\mqty(
+    a            &             &   \\
+                 & \ddots      &   \\
+                 &             & a \\)
+    =n\tr(a),                      \\
+    \n_{A/F}(a)  & =\det\mqty(
+    a            &             &   \\
+                 & \ddots      &   \\
+                 &             & a \\
+    )=\det(a)^n
+  \end{align*}
+  となる．$\det(a)\neq \det(b)$だが$\n_{A/F}(a)=\n_{A/F}(b)$なる$a,b$が（もし$F$が$a^n-1=0$の非自明な解を持つなら）存在する．また標数が$n$を割り切るとき$\tr_{A/F}$は常に$0$になる．これらの意味で，$\n_{A/F},\tr_{A/F}$は$\m_r(F)$の通常の行列式，トレースよりも情報量が少ない．
+\end{eg}
+できればこの例の場合の通常の行列式やトレースのような，$\n_{A/F},\tr_{A/F}$を簡約したものを利用したい．そこでこのようなものを被約ノルム，被約トレースとして定めることを目指す．
+被約ノルム，被約トレースを定めるために代数に課す性質を表す言葉を用意しておく．
+\begin{dfn}[分離単純代数]
+  $F$代数$A$が分離単純$F$代数であるとは，$A$が単純$F$代数であり，$\Zen(A)/F$が分離拡大であることである．
+\end{dfn}
+分離性自体は一般の代数に対して定義されるが，ここでは簡潔さのために単純代数に限定して上記の定義を採用する．いくつか定理，補題を示す．
+\begin{thm}[SAの表現
+    %,SSAの正則表現の同値性
+  ]\label{thm:sa_rep_and_ssa_reg_rep}
+  % \begin{enumerate}
+  %   \item 
+  単純$F$代数の次数が等しい二つの表現は同値である．
+  %   \item 半単純$F$代数の右正則表現と左正則表現は同値である．
+  % \end{enumerate}
 \end{thm}
-\begin{thm}[中心分離SAの正則表現の分解]
+\begin{proof}
+  % \begin{enumerate}
+  %   \item 
+  補題\ref{lem:same_dim}と命題\ref{prop:equiv_and_iso}よりしたがう．
+  %   \item 定理\ref{thm:artin_wedderburn}より半単純代数の右正則表現は単純代数の右正則表現の直和になる．左正則表現についても同様である．(1)より各単純代数の右，左正則表現は同値であるため，半単純代数の右正則表現と左正則表現も同値である．
+  % \end{enumerate}
+\end{proof}
+\begin{lem}[分離SAの係数拡大はSSA]\label{lem:csa_coef_ext_is_ssa}
+  $A$を分離単純$F$代数とする．$F$の（有限次元とは限らない）任意の拡大体$L$について，$A\otimes_F L$は半単純$F$代数である．
+\end{lem}
+\begin{proof}
+  $Z=\Zen(A)$とおく．$\gW$を$L$のガロア拡大体で$Z$の$F$準同型像を含むものとする．
+  \[
+    S=\hom_F(Z,\gW)/\gal(\gW/L),\quad U_\gs=Z^\gs L
+  \]
+  とおく．定理\ref{thm:tensor_is_a_direct_sum_of_inj_images}より
+  \[
+    Z\otimes_F L\cong \bigoplus_{\gs\in S} U_{\gs}
+  \]
+  である．$A$の$Z$基底$x_1,\ldots,x_t$をとると，
+  \[
+    A\otimes_F L =\left(\bigoplus_{i=1}^t x_iZ\right)\otimes_F L= \bigoplus_{i=1}^t x_i(Z\otimes_F L)=\bigoplus_{\gs\in S}\bigoplus_{i=1}^t x_iU_{\gs}= \bigoplus_{\gs\in S}(A\otimes_Z U_{\gs})
+  \]
+\end{proof}
+一般の代数に対する分離性の定義はこの補題\ref{lem:csa_coef_ext_is_ssa}が成り立つこと，つまり$A\otimes_F L$が半単純であることと定義される．
 
+例\ref{eg:tr_and_n_of_matrix}では$\gr={\id_A}^{\oplus n}$であり，これがトレース，ノルムよりも$\m_n(F)$の通常のトレース，行列式の方が精密に情報を取り出せる理由だった．一般の分離単純代数でもこのように右正則表現は別のものの直和に分解できる．
+\begin{thm}[分離SAの正則表現の分解]\label{thm:sep_sa_reg_rep_decomp}
+  $A$を分離単純$F$代数とする．$[A:\Zen(A)]=n^2, [\Zen(A):F]=m$とおく．$A$の右正則表現$\gr:A\to\m_{n^2m}(F)(\into\m_{n^2m}(\overline{F}))$に対して，ある$F$準同型$\gt:A\to\m_{mn}(\overline{F})$が存在し，
+  \[
+    \gr\sim\gt^{\oplus n}
+  \]
+  が成り立つ．さらに$\gch(P)(x)$で行列$P$の特性多項式を表すと，任意の$a\in A$に対して
+  \[
+    \gch(a^\gt)(x)\in F[x],\quad\gch(a^\gr)(x)=\gch(a^\gt)(x)^n
+  \]
+  が成り立つ．
 \end{thm}
+\begin{proof}
+  $A$の可除部分を$D$，容量を$r$，$Z=\Zen(D)(=\Zen(A))$とおく．さらに$[D:Z]=s^2$とおく．定理\ref{thm:cda_contains_sep_ex_of_degree_index}より$[K:Z]=s$なる$D$に含まれる$Z$の分離拡大体$K$が存在する．
+  \begin{center}
+    \begin{tikzpicture}
+      \node (A) at (0,0) {$A$};
+      \node (D) at (2,0) {$D$};
+      \node (K) at (4,0) {$K$};
+      \node (Z) at (6,0) {$Z$};
+      \node (F) at (8,0) {$F$};
+      \draw[-] (A) to node[above] {$r^2$} (D);
+      \draw[-] (D) to node[above] {$s$} (K);
+      \draw[-] (A) to[bend right=20] node[below] {$n^2$} (Z);
+      \draw[-] (K) to node[above] {$s$} (Z);
+      \draw[-] (Z) to node[above] {$m$} (F);
+    \end{tikzpicture}
+  \end{center}
+  $K$の$F$上のガロア閉包$L$をとる．一度$\gr$を$A\otimes_F L$上に延長してある$\gt$の直和に分解し，それを$A$に制限することで$\gr$の直和分解を得よう．そのためにまず$A\otimes_F L$の構造を見る．\\
+  $S=\hom_F(Z,L)=\gal(L/L)\backslash \hom_F(Z,L)$とおくと，補題\ref{lem:csa_coef_ext_is_ssa}より
+  \[
+    A\otimes_F L\cong \bigoplus_{\gs\in S}(A\otimes_Z U_{\gs})
+  \]
+  である．ここで$U_\gs = Z^\gs L = L$である．例\ref{eg:coef_ext_of_matrix}を用いると，各$A\otimes_Z U_{\gs}$について
+  \[
+    A\otimes_Z U_{\gs} \cong \m_r(D)\otimes_Z U_{\gs}\cong \m_r(D\otimes_Z U_{\gs})
+  \]
+  である．また$D\otimes_Z U_{\gs}$について$\sqrt{[D:Z]}=[K:Z]=s$ゆえ定理\ref{thm:subfield_of_csa}と命題\ref{prop:tensor_as_two_sided_algebra}より
+  \[
+    D\otimes_Z U_\gs = D\otimes_Z L = D\otimes_Z K\otimes_K L \cong \m_s(K)\otimes_K L \cong \m_s(L) = \m_s(U_{\gs})
+  \]
+  である．したがって，
+  \[
+    A\otimes_F L \cong \bigoplus_{\gs\in S} \m_{n}(U_{\gs})
+  \]
+  である．ここで$rs=n$を用いた．\\
+  次に$\gr$の$A\otimes_F L$への延長$\gr_L:A\otimes_F L\to\m_{n^2m}(L)$について調べる．$\gr_\gs:\m_n(U_\gs)\to\m_{n^2}(L)$を$L$代数$\m_n(U_\gs)$の正則表現とする．$A\otimes_F L\cong\bigoplus_{\gs\in S} \m_{n}(U_{\gs})$ゆえこの同型を通じて$\gr_L=\bigoplus_{\gs\in S}\gr_\gs$である．各$\gr_\gs$について，$\m_n(U_\gs)$は単純$L$代数ゆえ定理\ref{thm:sa_rep_and_ssa_reg_rep}(1)より$\gr_\gs\sim {\id_{U_\gs}}^{\oplus n}$である．したがって$\gt=\bigoplus_{\gs\in S}\id_{U_\gs}$とおくと
+  \[
+    \gr_L=\bigoplus_{\gs\in S}\gr_\gs\sim\bigoplus_{\gs\in S} {\id_{U_\gs}}^{\oplus n}=\left(\bigoplus_{\gs\in S}\id_{U_\gs}\right)^{\oplus n}=\gt^{\oplus n}
+  \]
+  である．$\gr=\gr_L|_A$であるため，$\gr,\gt$の定義域，余域を適切に読み直して$\gr\sim \gt^{\oplus n}$が成り立つ．\\
+  最後に$\gch(\gt(a))(x)$について調べる．まず
+  \begin{align*}
+    \gch(a^\gt)(x)^n & =\det(xI_{nm} - a^\gt)^n          \\
+                     & =\det\mqty(xI_{nm} - a^{\gt} &  & \\&\ddots&\\&&xI_{nm}-a^\gt)\\
+                     & =\det(xI_{n^2m} - a^\gr)          \\
+                     & =\gch(a^\gr)(x)
+  \end{align*}
+  より$\gch(a^\gt)(x)^n=\gch(a^\gr)(x)$が成り立つ．次に$\gch(a^\gt)(x)\in F[x]$を示す．$\gch(a^\gt)(x)\in L[x]$であるので$\gal(L/F)$の作用で不変であることを示せば良い．$\gch(a^\gr)(x)\in F[x]$より任意の$\gs\in \gal(L/F)$について
+  \[
+    (\gch(a^\gt)(x))^\gs)^n=(\gch(a^\gr)(x))^\gs=\gch(a^\gr)(x)=\gch(a^\gt)(x)^n
+  \]
+  である．よって$\gz$を1の原始$n$乗根として$\gch(a^\gt)(x)^\gs=\gz^k\gch(a^\gt)(x)$が成り立つが，どちらもモニックなので$k=1$，すなわち$\gch(a^\gt)(x)^\gs=\gch(a^\gt)(x)$である．
+\end{proof}
+この定理を用いて分離単純$F$代数の被約トレース，被約ノルムを定義しよう．右正則表現を分解して得られた表現を用いて定める．
 \begin{dfn}[被約ノルム，被約トレース]
-
+  $A$を分離単純$F$代数，$[A:\Zen(A)]=n^2, [\Zen(A):F]=m$，$\gr$を$A$の右正則表現とする．$\gt:A\to\m_{mn}(\overline{F})$を$\gr\sim \gt^{\oplus n}$なる表現とする．このとき
+  \[
+    \trd_{A/F}(a)=\tr(a^\gt),\quad\nrd_{A/F}(a)=\n(a^\gt)
+  \]
+  で定められる写像$\trd_{A/F}:A\to F,\nrd_{A/F}:A\to F$をそれぞれ$A$の被約トレース，被約ノルムという．
 \end{dfn}
-\begin{lem}[中心分離SAの係数拡大はSSA]
+定理\ref{thm:sep_sa_reg_rep_decomp}によりこのような$\gt$は存在する．$\gt$の選択でのwell-defined性を示す．
+\begin{proof}
+  $\gr\sim\gt^{\oplus n}\sim\gs^{\oplus n}$であるとき，$\gg\gt^{\oplus n}=\gs^{\oplus n}\gg$なる$\gg\in\GL_{mn}(\overline{F})$が存在する．$\gg$を$n\times n$のブロック行列とみなすと，$\gg\gt^{\oplus n}=\gs^{\oplus n}\gg$より任意の$i,j\in\{1,\ldots,n\}$について$\gg_{ij}a^\gt=a^\gs\gg_{ij}$が成り立つ．$\gg$が正則ゆえ$\gg_{ij}$に正則なものが存在する．したがって$a^\gt$と$a^\gs$は相似である．よって$\trd_{A/F}(a)$と$\nrd_{A/F}(a)$は$\gt$の選択によらずwell-definedである．
+\end{proof}
+いくつか簡単な例を見ておこう．
+\begin{eg}
+  $A=\m_n(F)$のとき，$[A:\Zen(A)]=n^2,[\Zen(A):F]=1$である．$a\in A$について，
+  \[
+    a^\gr=\mqty(
+    a&&\\
+    &\ddots&\\
+    &&a\\
+    )
+    =a^{{\id_A}^{\oplus n}},
+  \]
+  つまり$\gr\sim{\id_A}^{\oplus n}$である．したがって
+  \[
+    \trd_{A/F}(a)=\tr(a),\quad\nrd_{A/F}(a)=\det(a)
+  \]
+  である．例\ref{eg:tr_and_n_of_matrix}の観察を通じて望んだ通り，トレース，ノルムを簡約したものとして被約トレース，被約ノルムが得られていることがわかる．
+\end{eg}
+\begin{eg}
+  $K/F$を分離拡大体とする．$A=K$のとき，$[A:\Zen(A)]=1,[\Zen(A):F]=[K:F]$である．$\gr\sim\gr^{\oplus 1}$である．したがって
+  \[
+    \trd_{A/F}(a)=\tr_{K/F}(a),\quad\nrd_{A/F}(a)=\n_{K/F}(a)
+  \]
+  である．この例では被約トレース，被約ノルムは通常のトレース，ノルムと一致している．
+\end{eg}
+被約トレースの性質を見てみよう．
+\begin{thm}[分離SAの被約トレースは非退化]
+  $A$を分離単純$F$代数とする．$F$双線型形式$(x,y)\mapsto\trd_{A/F}(xy)$は非退化である．
+\end{thm}
+\begin{proof}
+
+\end{proof}
+今後使う補題を示しておく．これは補題\ref{lem:csa_coef_ext_is_ssa}の部分的な逆である．
+\begin{lem}[中心分離で係数拡大してSSAならSA]
 
 \end{lem}
-\begin{thm}[中心分離SAの被約トレースは非退化]
-
-\end{thm}
-\begin{thm}[中心分離で係数拡大してSSAならSA]
-
-\end{thm}
 %%%%%%%%%%%%%%%%%%%%%content%%%%%%%%%%%%%%%%%%%%%
 %\input{thebibliography.tex}
 \end{document}
